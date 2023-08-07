@@ -1,36 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_portfolio/core/res/app_color.dart';
 
 class AppTextStyle {
-  static TextStyle headerTextStyle() {
+  static TextStyle headerTextStyle({Color color=Colors.white}) {
     return GoogleFonts.signikaNegative(
-        fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white);
+      fontSize: 18,
+      fontWeight: FontWeight.w600,
+      color:color,
+    );
   }
 
-  static TextStyle montserratStyle({required Color color}) {
+  static TextStyle montserratStyle(
+      {required Color color, double fontSize = 24}) {
     return GoogleFonts.montserrat(
       fontWeight: FontWeight.w800,
-      fontSize: 24,
+      fontSize: fontSize,
       color: color,
     );
   }
-  static TextStyle headingStyle(){
 
+  static TextStyle headingStyle(
+      {double fontSize = 36, Color color = Colors.white}) {
     return GoogleFonts.rubikMoonrocks(
-      fontSize: 36,
-      fontWeight: FontWeight.bold,
-      color: Colors.white,
-      letterSpacing: 2
-
-    );
+        fontSize: fontSize,
+        fontWeight: FontWeight.bold,
+        color: color,
+        letterSpacing: 2);
   }
 
-  static TextStyle normalStyle(){
-    return GoogleFonts.signikaNegative(
-      fontSize: 17,
-      fontWeight: FontWeight.w500,
-      color: Colors.white,
-      letterSpacing: 1
-    );
+  static TextStyle normalStyle({Color color = Colors.white}) {
+    return TextStyle(
+        fontSize: 17,
+        fontWeight: FontWeight.w500,
+        color: color,
+        letterSpacing: 1.7,
+        height: 1.5);
+  }
+
+  static TextStyle comfortaaStyle() {
+    return GoogleFonts.comfortaa(
+        fontSize: 18, fontWeight: FontWeight.w800, color: Colors.grey);
   }
 }
