@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/core/components/app_button.dart';
 import 'package:my_portfolio/core/res/app_color.dart';
 import 'package:my_portfolio/core/res/app_text_style.dart';
 import 'package:my_portfolio/core/res/constants.dart';
@@ -45,6 +46,8 @@ class ContactUs extends StatelessWidget {
                   color: Colors.transparent,
                   elevation: 8,
                   child: TextField(
+                    cursorColor: AppColors.white,
+                    style: AppTextStyle.normalStyle(),
                     decoration: buildInputDecoration(hintText: "Full Name"),
                   ),
                 ),
@@ -56,6 +59,8 @@ class ContactUs extends StatelessWidget {
                   color: Colors.transparent,
                   elevation: 8,
                   child: TextField(
+                    cursorColor: AppColors.white,
+                    style: AppTextStyle.normalStyle(),
                     decoration: buildInputDecoration(hintText: "Email Address"),
                   ),
                 ),
@@ -71,6 +76,8 @@ class ContactUs extends StatelessWidget {
                   color: Colors.transparent,
                   elevation: 8,
                   child: TextField(
+                    cursorColor: AppColors.white,
+                    style: AppTextStyle.normalStyle(),
                     decoration: buildInputDecoration(hintText: "Mobile Number"),
                   ),
                 ),
@@ -82,6 +89,8 @@ class ContactUs extends StatelessWidget {
                   color: Colors.transparent,
                   elevation: 8,
                   child: TextField(
+                    cursorColor: AppColors.white,
+                    style: AppTextStyle.normalStyle(),
                     decoration: buildInputDecoration(hintText: "Email Subject"),
                   ),
                 ),
@@ -95,9 +104,13 @@ class ContactUs extends StatelessWidget {
             elevation: 8,
             child: TextField(
               maxLines: 15,
+              cursorColor: AppColors.white,
+              style: AppTextStyle.normalStyle(),
               decoration: buildInputDecoration(hintText: "Your message!!"),
             ),
           ),
+          Constants.sizedBox(height: 20),
+          AppButton.buildMaterialButton(text: "Send Message", onTap: (){})
         ],
       ),
     );

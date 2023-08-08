@@ -39,6 +39,7 @@ dependencies:
   animated_text_kit: ^4.2.2
   animate_do: ^3.0.2
   flutter_file_downloader: ^1.1.2
+  url_launcher: ^6.1.12
 
 dev_dependencies:
   flutter_test:

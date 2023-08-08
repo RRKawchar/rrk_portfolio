@@ -8,4 +8,5 @@ class AppColors{
   static Color lowGreen=const Color(0xff7CFC00);
   static Color bgColor2=const Color(0xff006D6F);
   static Color robinEdgeBlue=const Color(0xff00CCCC);
+  static Color white = const Color(0xffffffff);
 }

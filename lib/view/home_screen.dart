@@ -6,6 +6,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_file_downloader/flutter_file_downloader.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:my_portfolio/core/components/app_button.dart';
 import 'package:my_portfolio/core/components/custom_text.dart';
 import 'package:my_portfolio/core/components/profile_animation.dart';
@@ -15,9 +16,12 @@ import 'package:my_portfolio/core/res/app_text_style.dart';
 import 'package:my_portfolio/core/res/constants.dart';
 import 'package:my_portfolio/view/about_me.dart';
 import 'package:my_portfolio/view/contact_us.dart';
+import 'package:my_portfolio/view/footer_widget.dart';
 import 'package:my_portfolio/view/my_portfolio.dart';
 import 'package:my_portfolio/view/services/my_service.dart';
 import 'dart:html' as html;
+
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -27,8 +31,27 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
+  final onMenuHover = Matrix4.identity()..scale(1.0);
   final String cvFileName = 'cv.pdf';
+
+  final List<String> menuItems = [
+    "Home",
+    "About",
+    "Services",
+    "Projects",
+    "Contact"
+  ];
+
+  final List<String> socialButtons = [
+    AppAssets.facebook,
+    AppAssets.twitter,
+    AppAssets.linkedIn,
+    AppAssets.instagram,
+    AppAssets.github,
+  ];
+
+  var menuIndex = 0;
+  var socialBI;
 
   void _downloadCV() {
     final anchor = html.AnchorElement(href: 'cv.pdf')
@@ -37,6 +60,40 @@ class _HomeScreenState extends State<HomeScreen> {
     anchor.click();
     print(cvFileName);
   }
+
+  // Widget download_cv() {
+  //   return MaterialButton(
+  //     color: Colors.blue,
+  //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+  //     onPressed: () {
+  //       _launchURL('https://github.com/RRKawchar/my_portfolio2/blob/master/assets/cvpdf/cv.pdf');       //000webhost e upload kora ache
+  //     },
+  //     child: Padding(
+  //       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 26),
+  //       child: Text(
+  //         'Download cv',
+  //         style: GoogleFonts.poppins(
+  //             fontSize: 18,
+  //             fontWeight: FontWeight.w400,
+  //             color: Colors.white.withOpacity(0.9)
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
+  //
+  //
+  // void _launchURL(String url) async {
+  //   if (!await launch(
+  //     url,
+  //     forceSafariVC: true,
+  //     forceWebView: true,
+  //     enableJavaScript: true,
+  //   ))
+  //   {
+  //     throw 'Could not launch $url';
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -56,37 +113,34 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               const Text("Portfolio"),
               const Spacer(),
-              Text(
-                "Home",
-                style: AppTextStyle.headerTextStyle(),
-              ),
-              const SizedBox(
-                width: 30,
-              ),
-              Text(
-                "About",
-                style: AppTextStyle.headerTextStyle(),
-              ),
-              const SizedBox(
-                width: 30,
-              ),
-              Text(
-                "Service",
-                style: AppTextStyle.headerTextStyle(),
-              ),
-              const SizedBox(
-                width: 30,
-              ),
-              Text(
-                "Portfolio",
-                style: AppTextStyle.headerTextStyle(),
-              ),
-              const SizedBox(
-                width: 30,
-              ),
-              Text(
-                "Contact",
-                style: AppTextStyle.headerTextStyle(),
+              SizedBox(
+                height: 30,
+                child: ListView.separated(
+                  itemCount: menuItems.length,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  separatorBuilder: (context, child) =>
+                      Constants.sizedBox(width: 8),
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {},
+                      borderRadius: BorderRadius.circular(100),
+                      onHover: (value) {
+                        setState(() {
+                          if (value) {
+                            menuIndex = index;
+                          } else {
+                            menuIndex = 0;
+                          }
+                        });
+                      },
+                      child: buildNavBarAnimatedContainer(
+                        index,
+                        menuIndex == index ? true : false,
+                      ),
+                    );
+                  },
+                ),
               ),
             ],
           ),
@@ -102,89 +156,111 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    FadeInDown(
-                      duration: const Duration(milliseconds: 1200),
-                      child: Text(
-                        "Hello It's Me",
-                        style:
-                            AppTextStyle.montserratStyle(color: Colors.white),
-                      ),
-                    ),
-                    Constants.sizedBox(height: 15),
-                    FadeInRight(
-                      duration: const Duration(milliseconds: 1400),
-                      child: Text(
-                        "Riyazur Rohman Kawchar",
-                        style: AppTextStyle.headingStyle(),
-                      ),
-                    ),
-                    Constants.sizedBox(height: 15),
-                    FadeInLeft(
-                      duration: const Duration(milliseconds: 1400),
-                      child: AnimatedTextKit(
-                        animatedTexts: [
-                          TypewriterAnimatedText(
-                            "I'm Software Engineer(Flutter)",
-                            textStyle: AppTextStyle.montserratStyle(
-                                color: Colors.lightBlueAccent),
-                            speed: const Duration(milliseconds: 200),
-                          ),
-                        ],
-                        pause: const Duration(milliseconds: 1000),
-                        displayFullTextOnTap: true,
-                        stopPauseOnTap: true,
-                      ),
-                    ),
-                    Constants.sizedBox(height: 15),
-                    FadeInDown(
-                      duration: const Duration(milliseconds: 1600),
-                      child: SizedBox(
-                        width: size.width * 0.5,
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  vertical: 30, horizontal: size.width * 0.1),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      FadeInDown(
+                        duration: const Duration(milliseconds: 1200),
                         child: Text(
-                            "Highly skilled Flutter app developer with a strong passion for creating "
-                            "innovative and user-friendly mobile applications. Problem-solving abilities, and"
-                            "effective communication skills contribute to my success as a Flutter app"
-                            "developer.",
-                            style: AppTextStyle.normalStyle()),
+                          "Hello It's Me",
+                          style:
+                              AppTextStyle.montserratStyle(color: Colors.white),
+                        ),
                       ),
-                    ),
-                    Constants.sizedBox(height: 22),
-                    FadeInUp(
-                      duration: const Duration(milliseconds: 1600),
-                      child: Row(
-                        children: [
-                          buildSocialButton(image: AppAssets.facebook),
-                          Constants.sizedBox(width: 12),
-                          buildSocialButton(image: AppAssets.twitter),
-                          Constants.sizedBox(width: 12),
-                          buildSocialButton(image: AppAssets.linkedIn),
-                          Constants.sizedBox(width: 12),
-                          buildSocialButton(image: AppAssets.instagram),
-                          Constants.sizedBox(width: 12),
-                          buildSocialButton(image: AppAssets.github),
-                        ],
+                      Constants.sizedBox(height: 15),
+                      FadeInRight(
+                        duration: const Duration(milliseconds: 1400),
+                        child: Text(
+                          "Riyazur Rohman Kawchar",
+                          style: AppTextStyle.headingStyle(),
+                        ),
                       ),
-                    ),
-                    Constants.sizedBox(height: 18),
-                    FadeInUp(
-                      duration: const Duration(milliseconds: 1800),
-                      child: AppButton.buildMaterialButton(
-                        text: "Download CV",
-                        onTap: _downloadCV
+                      Constants.sizedBox(height: 15),
+                      FadeInLeft(
+                        duration: const Duration(milliseconds: 1400),
+                        child: AnimatedTextKit(
+                          animatedTexts: [
+                            TypewriterAnimatedText(
+                              "I'm Software Engineer(Flutter)",
+                              textStyle: AppTextStyle.montserratStyle(
+                                  color: Colors.lightBlueAccent),
+                              speed: const Duration(milliseconds: 200),
+                            ),
+                          ],
+                          pause: const Duration(milliseconds: 1000),
+                          displayFullTextOnTap: true,
+                          stopPauseOnTap: true,
+                        ),
                       ),
-                    )
-                  ],
-                ),
-                Constants.sizedBox(width: 20),
-                const ProfileAnimation(),
-              ],
+                      Constants.sizedBox(height: 15),
+                      FadeInDown(
+                        duration: const Duration(milliseconds: 1600),
+                        child: SizedBox(
+                          width: size.width * 0.5,
+                          child: Text(
+                              "Highly skilled Flutter app developer with a strong passion for creating "
+                              "innovative and user-friendly mobile applications. Problem-solving abilities, and"
+                              "effective communication skills contribute to my success as a Flutter app"
+                              "developer.",
+                              style: AppTextStyle.normalStyle()),
+                        ),
+                      ),
+                      Constants.sizedBox(height: 22),
+                      FadeInUp(
+                          duration: const Duration(milliseconds: 1600),
+                          child: SizedBox(
+                            height: 48,
+                            child: ListView.separated(
+                              itemCount: socialButtons.length,
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              separatorBuilder: (context, child) =>
+                                  Constants.sizedBox(width: 8),
+                              itemBuilder: (context, index) {
+                                return InkWell(
+                                  onTap: () {},
+                                  onHover: (value) {
+                                    setState(() {
+                                      if (value) {
+                                        socialBI = index;
+                                      } else {
+                                        socialBI = null;
+                                      }
+                                    });
+                                  },
+                                  borderRadius: BorderRadius.circular(550.0),
+                                  hoverColor: AppColors.themeColor,
+                                  splashColor: AppColors.lowGreen,
+                                  child: buildSocialButton(
+                                    image: socialButtons[index],
+                                    hover: socialBI == index ? true : false,
+                                  ),
+                                );
+                              },
+                            ),
+                          )),
+                      Constants.sizedBox(height: 18),
+                      FadeInUp(
+                        duration: const Duration(milliseconds: 1800),
+                        child: AppButton.buildMaterialButton(
+                            text: "Download CV",
+                            onTap: () {
+                              _downloadCV();
+                            }),
+                      )
+                    ],
+                  ),
+                  Constants.sizedBox(width: 20),
+                  const ProfileAnimation(),
+                ],
+              ),
             ),
             const SizedBox(
               height: 220,
@@ -192,21 +268,37 @@ class _HomeScreenState extends State<HomeScreen> {
             const AboutMe(),
             const MyService(),
             const MyPortfolio(),
-            const ContactUs()
+            const ContactUs(),
+            const FooterScreen(),
           ],
         ),
       ),
     );
   }
 
-  Widget buildSocialButton({required String image}) {
+  AnimatedContainer buildNavBarAnimatedContainer(int index, bool hover) {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
+      alignment: Alignment.center,
+      width: hover ? 80 : 75,
+      transform: hover ? onMenuHover : null,
+      child: Text(
+        menuItems[index],
+        style: AppTextStyle.headerTextStyle(
+            color: hover ? AppColors.themeColor : AppColors.white),
+      ),
+    );
+  }
+
+  Widget buildSocialButton({required String image, required bool hover}) {
     return Ink(
       height: 50,
       width: 50,
       decoration: BoxDecoration(
-          border: Border.all(color: AppColors.themeColor, width: 2.0),
-          shape: BoxShape.circle,
-          color: AppColors.bgColor),
+        border: Border.all(color: AppColors.themeColor, width: 2.0),
+        shape: BoxShape.circle,
+        color: AppColors.bgColor,
+      ),
       padding: const EdgeInsets.all(6),
       child: InkWell(
         onTap: () {},
@@ -216,9 +308,9 @@ class _HomeScreenState extends State<HomeScreen> {
         hoverColor: AppColors.aqua,
         child: Image.asset(
           image,
-          width: 24,
-          height: 24,
-          color: AppColors.themeColor,
+          width: 10,
+          height: 12,
+          color: hover ? AppColors.bgColor : AppColors.themeColor,
           fit: BoxFit.contain,
         ),
       ),
