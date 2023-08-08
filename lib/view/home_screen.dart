@@ -10,6 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:my_portfolio/core/components/app_button.dart';
 import 'package:my_portfolio/core/components/custom_text.dart';
 import 'package:my_portfolio/core/components/profile_animation.dart';
+import 'package:my_portfolio/core/helper/helper_class.dart';
 import 'package:my_portfolio/core/res/app_assets.dart';
 import 'package:my_portfolio/core/res/app_color.dart';
 import 'package:my_portfolio/core/res/app_text_style.dart';
@@ -31,16 +32,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final onMenuHover = Matrix4.identity()..scale(1.0);
   final String cvFileName = 'cv.pdf';
-
-  final List<String> menuItems = [
-    "Home",
-    "About",
-    "Services",
-    "Projects",
-    "Contact"
-  ];
 
   final List<String> socialButtons = [
     AppAssets.facebook,
@@ -50,7 +42,6 @@ class _HomeScreenState extends State<HomeScreen> {
     AppAssets.github,
   ];
 
-  var menuIndex = 0;
   var socialBI;
 
   void _downloadCV() {
@@ -61,232 +52,140 @@ class _HomeScreenState extends State<HomeScreen> {
     print(cvFileName);
   }
 
-  // Widget download_cv() {
-  //   return MaterialButton(
-  //     color: Colors.blue,
-  //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-  //     onPressed: () {
-  //       _launchURL('https://github.com/RRKawchar/my_portfolio2/blob/master/assets/cvpdf/cv.pdf');       //000webhost e upload kora ache
-  //     },
-  //     child: Padding(
-  //       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 26),
-  //       child: Text(
-  //         'Download cv',
-  //         style: GoogleFonts.poppins(
-  //             fontSize: 18,
-  //             fontWeight: FontWeight.w400,
-  //             color: Colors.white.withOpacity(0.9)
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
-  //
-  //
-  // void _launchURL(String url) async {
-  //   if (!await launch(
-  //     url,
-  //     forceSafariVC: true,
-  //     forceWebView: true,
-  //     enableJavaScript: true,
-  //   ))
-  //   {
-  //     throw 'Could not launch $url';
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
-    return Scaffold(
-      backgroundColor: AppColors.bgColor,
-      appBar: AppBar(
-        backgroundColor: AppColors.bgColor,
-        elevation: 0,
-        toolbarHeight: 80,
-        titleSpacing: 100,
-        title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 60),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              const Text("Portfolio"),
-              const Spacer(),
-              SizedBox(
-                height: 30,
-                child: ListView.separated(
-                  itemCount: menuItems.length,
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  separatorBuilder: (context, child) =>
-                      Constants.sizedBox(width: 8),
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () {},
-                      borderRadius: BorderRadius.circular(100),
-                      onHover: (value) {
-                        setState(() {
-                          if (value) {
-                            menuIndex = index;
-                          } else {
-                            menuIndex = 0;
-                          }
-                        });
-                      },
-                      child: buildNavBarAnimatedContainer(
-                        index,
-                        menuIndex == index ? true : false,
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ],
+    return HelperClass(
+      bgColor: AppColors.bgColor,
+      mobile: Column(
+        children: [
+          const ProfileAnimation(),
+          Constants.sizedBox(height: 24),
+          buildHomePersonalInfo(size),
+        ],
+      ),
+      tablet: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Expanded(
+            child: buildHomePersonalInfo(size),
           ),
-        ),
+          const SizedBox(width: 16), // Add spacing between widgets
+          const ProfileAnimation(),
+        ],
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.only(
-          top: size.height * 0.5,
-          // left: size.width * 0.1,
-          // right: size.width*0.1,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(
-                  vertical: 30, horizontal: size.width * 0.1),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      FadeInDown(
-                        duration: const Duration(milliseconds: 1200),
-                        child: Text(
-                          "Hello It's Me",
-                          style:
-                              AppTextStyle.montserratStyle(color: Colors.white),
-                        ),
-                      ),
-                      Constants.sizedBox(height: 15),
-                      FadeInRight(
-                        duration: const Duration(milliseconds: 1400),
-                        child: Text(
-                          "Riyazur Rohman Kawchar",
-                          style: AppTextStyle.headingStyle(),
-                        ),
-                      ),
-                      Constants.sizedBox(height: 15),
-                      FadeInLeft(
-                        duration: const Duration(milliseconds: 1400),
-                        child: AnimatedTextKit(
-                          animatedTexts: [
-                            TypewriterAnimatedText(
-                              "I'm Software Engineer(Flutter)",
-                              textStyle: AppTextStyle.montserratStyle(
-                                  color: Colors.lightBlueAccent),
-                              speed: const Duration(milliseconds: 200),
-                            ),
-                          ],
-                          pause: const Duration(milliseconds: 1000),
-                          displayFullTextOnTap: true,
-                          stopPauseOnTap: true,
-                        ),
-                      ),
-                      Constants.sizedBox(height: 15),
-                      FadeInDown(
-                        duration: const Duration(milliseconds: 1600),
-                        child: SizedBox(
-                          width: size.width * 0.5,
-                          child: Text(
-                              "Highly skilled Flutter app developer with a strong passion for creating "
-                              "innovative and user-friendly mobile applications. Problem-solving abilities, and"
-                              "effective communication skills contribute to my success as a Flutter app"
-                              "developer.",
-                              style: AppTextStyle.normalStyle()),
-                        ),
-                      ),
-                      Constants.sizedBox(height: 22),
-                      FadeInUp(
-                          duration: const Duration(milliseconds: 1600),
-                          child: SizedBox(
-                            height: 48,
-                            child: ListView.separated(
-                              itemCount: socialButtons.length,
-                              shrinkWrap: true,
-                              scrollDirection: Axis.horizontal,
-                              separatorBuilder: (context, child) =>
-                                  Constants.sizedBox(width: 8),
-                              itemBuilder: (context, index) {
-                                return InkWell(
-                                  onTap: () {},
-                                  onHover: (value) {
-                                    setState(() {
-                                      if (value) {
-                                        socialBI = index;
-                                      } else {
-                                        socialBI = null;
-                                      }
-                                    });
-                                  },
-                                  borderRadius: BorderRadius.circular(550.0),
-                                  hoverColor: AppColors.themeColor,
-                                  splashColor: AppColors.lowGreen,
-                                  child: buildSocialButton(
-                                    image: socialButtons[index],
-                                    hover: socialBI == index ? true : false,
-                                  ),
-                                );
-                              },
-                            ),
-                          )),
-                      Constants.sizedBox(height: 18),
-                      FadeInUp(
-                        duration: const Duration(milliseconds: 1800),
-                        child: AppButton.buildMaterialButton(
-                            text: "Download CV",
-                            onTap: () {
-                              _downloadCV();
-                            }),
-                      )
-                    ],
-                  ),
-                  Constants.sizedBox(width: 20),
-                  const ProfileAnimation(),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 220,
-            ),
-            const AboutMe(),
-            const MyService(),
-            const MyPortfolio(),
-            const ContactUs(),
-            const FooterScreen(),
-          ],
-        ),
+      desktop: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Expanded(
+            child: buildHomePersonalInfo(size),
+          ),
+          const SizedBox(width: 16), // Add spacing between widgets
+          const ProfileAnimation(),
+        ],
       ),
+      paddingWidth: size.width * 0.01,
     );
   }
 
-  AnimatedContainer buildNavBarAnimatedContainer(int index, bool hover) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
-      alignment: Alignment.center,
-      width: hover ? 80 : 75,
-      transform: hover ? onMenuHover : null,
-      child: Text(
-        menuItems[index],
-        style: AppTextStyle.headerTextStyle(
-            color: hover ? AppColors.themeColor : AppColors.white),
-      ),
+
+  Column buildHomePersonalInfo(Size size) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        FadeInDown(
+          duration: const Duration(milliseconds: 1200),
+          child: Text(
+            "Hello It's Me",
+            style: AppTextStyle.montserratStyle(color: Colors.white),
+          ),
+        ),
+        Constants.sizedBox(height: 15),
+        FadeInRight(
+          duration: const Duration(milliseconds: 1400),
+          child: Text(
+            "Riyazur Rohman Kawchar",
+            style: AppTextStyle.headingStyle(),
+          ),
+        ),
+        Constants.sizedBox(height: 15),
+        FadeInLeft(
+          duration: const Duration(milliseconds: 1400),
+          child: AnimatedTextKit(
+            animatedTexts: [
+              TypewriterAnimatedText(
+                "I'm Software Engineer(Flutter)",
+                textStyle:
+                    AppTextStyle.montserratStyle(color: Colors.lightBlueAccent),
+                speed: const Duration(milliseconds: 200),
+              ),
+            ],
+            pause: const Duration(milliseconds: 1000),
+            displayFullTextOnTap: true,
+            stopPauseOnTap: true,
+          ),
+        ),
+        Constants.sizedBox(height: 15),
+        FadeInDown(
+          duration: const Duration(milliseconds: 1600),
+          child: Expanded(
+            child: Text(
+                "Highly skilled Flutter app developer with a strong passion for creating "
+                "innovative and user-friendly mobile applications. Problem-solving abilities, and"
+                "effective communication skills contribute to my success as a Flutter app"
+                "developer.",
+                style: AppTextStyle.normalStyle()),
+          ),
+        ),
+        Constants.sizedBox(height: 22),
+        FadeInUp(
+            duration: const Duration(milliseconds: 1600),
+            child: SizedBox(
+              height: 48,
+              child: ListView.separated(
+                itemCount: socialButtons.length,
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                separatorBuilder: (context, child) =>
+                    Constants.sizedBox(width: 8),
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () {},
+                    onHover: (value) {
+                      setState(() {
+                        if (value) {
+                          socialBI = index;
+                        } else {
+                          socialBI = null;
+                        }
+                      });
+                    },
+                    borderRadius: BorderRadius.circular(550.0),
+                    hoverColor: AppColors.themeColor,
+                    splashColor: AppColors.lowGreen,
+                    child: buildSocialButton(
+                      image: socialButtons[index],
+                      hover: socialBI == index ? true : false,
+                    ),
+                  );
+                },
+              ),
+            )),
+        Constants.sizedBox(height: 18),
+        FadeInUp(
+          duration: const Duration(milliseconds: 1800),
+          child: AppButton.buildMaterialButton(
+              text: "Download CV",
+              onTap: () {
+                _downloadCV();
+              }),
+        ),
+        Constants.sizedBox(height: 40),
+      ],
     );
   }
 

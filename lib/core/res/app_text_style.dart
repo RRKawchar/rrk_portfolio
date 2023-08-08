@@ -29,9 +29,9 @@ class AppTextStyle {
         letterSpacing: 2);
   }
 
-  static TextStyle normalStyle({Color color = Colors.white}) {
+  static TextStyle normalStyle({Color color = Colors.white,double fontSize=16.0}) {
     return TextStyle(
-        fontSize: 17,
+        fontSize: fontSize,
         fontWeight: FontWeight.w500,
         color: color,
         letterSpacing: 1.7,

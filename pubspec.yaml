@@ -40,6 +40,7 @@ dependencies:
   animate_do: ^3.0.2
   flutter_file_downloader: ^1.1.2
   url_launcher: ^6.1.12
+  scrollable_positioned_list: ^0.3.8
 
 dev_dependencies:
   flutter_test:

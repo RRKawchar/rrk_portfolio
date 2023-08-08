@@ -35,11 +35,11 @@ class _ProfileAnimationState extends State<ProfileAnimation>with TickerProviderS
 
         position: _animation,
       child: CircleAvatar(
-        radius: 150,
+        radius: 160,
         child: CircleAvatar(
-          radius: 145,
+          radius: 155,
           backgroundColor: AppColors.aqua,
-          backgroundImage: AssetImage(AppAssets.profile),
+          backgroundImage: AssetImage(AppAssets.profile,),
         ),
 
       ),
