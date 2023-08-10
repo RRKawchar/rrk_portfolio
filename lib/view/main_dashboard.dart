@@ -148,7 +148,7 @@ class _MainDashboardState extends State<MainDashboard> {
           }
         }),
       ),
-      body: ScrollablePositionedList.builder(
+      body:ScrollablePositionedList.builder(
         scrollOffsetController: ScrollOffsetController(
 
         ),

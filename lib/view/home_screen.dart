@@ -22,8 +22,6 @@ import 'package:my_portfolio/view/my_portfolio.dart';
 import 'package:my_portfolio/view/services/my_service.dart';
 import 'dart:html' as html;
 
-import 'package:url_launcher/url_launcher.dart';
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -69,9 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Expanded(
-            child: buildHomePersonalInfo(size),
-          ),
+          Expanded(child: buildHomePersonalInfo(size)),
           const SizedBox(width: 16), // Add spacing between widgets
           const ProfileAnimation(),
         ],
@@ -80,19 +76,19 @@ class _HomeScreenState extends State<HomeScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Expanded(
-            child: buildHomePersonalInfo(size),
-          ),
+          Expanded(child: buildHomePersonalInfo(size)),
           const SizedBox(width: 16), // Add spacing between widgets
-          const ProfileAnimation(),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 100),
+            child: const ProfileAnimation(),
+          ),
         ],
       ),
       paddingWidth: size.width * 0.01,
     );
   }
 
-
-  Column buildHomePersonalInfo(Size size) {
+  Widget buildHomePersonalInfo(Size size) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -132,7 +128,9 @@ class _HomeScreenState extends State<HomeScreen> {
         Constants.sizedBox(height: 15),
         FadeInDown(
           duration: const Duration(milliseconds: 1600),
-          child: Expanded(
+          child: SizedBox(
+            height: 200,
+            width: size.width / 2.2,
             child: Text(
                 "Highly skilled Flutter app developer with a strong passion for creating "
                 "innovative and user-friendly mobile applications. Problem-solving abilities, and"
