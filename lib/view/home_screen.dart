@@ -182,7 +182,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: AppButton.buildMaterialButton(
               text: "Download CV",
               onTap: () {
-                _launchURL('https://github.com/RRKawchar/my_portfolio2/blob/master/assets/cvpdf/nid-4207630692.pdf');
+                _launchURL('https://github.com/RRKawchar/my_portfolio2/blob/master/assets/cvpdf/cv.pdf');
                 //_downloadCV();
               }),
         ),
