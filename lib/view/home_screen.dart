@@ -22,6 +22,8 @@ import 'package:my_portfolio/view/my_portfolio.dart';
 import 'package:my_portfolio/view/services/my_service.dart';
 import 'dart:html' as html;
 
+import 'package:url_launcher/url_launcher.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -78,9 +80,9 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Expanded(child: buildHomePersonalInfo(size)),
           const SizedBox(width: 16), // Add spacing between widgets
-          Padding(
-            padding: const EdgeInsets.only(bottom: 100),
-            child: const ProfileAnimation(),
+          const Padding(
+            padding: EdgeInsets.only(bottom: 100),
+            child: ProfileAnimation(),
           ),
         ],
       ),
@@ -132,59 +134,76 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 200,
             width: size.width / 2.2,
             child: Text(
-                "Highly skilled Flutter app developer with a strong passion for creating "
-                "innovative and user-friendly mobile applications. Problem-solving abilities, and"
-                "effective communication skills contribute to my success as a Flutter app"
-                "developer.",
-                style: AppTextStyle.normalStyle()),
+              "Highly skilled Flutter app developer with a strong passion for creating "
+              "innovative and user-friendly mobile applications. Problem-solving abilities, and"
+              "effective communication skills contribute to my success as a Flutter app"
+              "developer.",
+              style: AppTextStyle.normalStyle(),
+            ),
           ),
         ),
-        Constants.sizedBox(height: 22),
         FadeInUp(
-            duration: const Duration(milliseconds: 1600),
-            child: SizedBox(
-              height: 48,
-              child: ListView.separated(
-                itemCount: socialButtons.length,
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                separatorBuilder: (context, child) =>
-                    Constants.sizedBox(width: 8),
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {},
-                    onHover: (value) {
-                      setState(() {
-                        if (value) {
-                          socialBI = index;
-                        } else {
-                          socialBI = null;
-                        }
-                      });
-                    },
-                    borderRadius: BorderRadius.circular(550.0),
-                    hoverColor: AppColors.themeColor,
-                    splashColor: AppColors.lowGreen,
-                    child: buildSocialButton(
-                      image: socialButtons[index],
-                      hover: socialBI == index ? true : false,
-                    ),
-                  );
-                },
-              ),
-            )),
+          duration: const Duration(milliseconds: 1600),
+          child: SizedBox(
+            height: 48,
+            child: ListView.separated(
+              itemCount: socialButtons.length,
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              separatorBuilder: (context, child) =>
+                  Constants.sizedBox(width: 8),
+              itemBuilder: (context, index) {
+                return InkWell(
+                  onTap: () {},
+                  onHover: (value) {
+                    setState(() {
+                      if (value) {
+                        socialBI = index;
+                      } else {
+                        socialBI = null;
+                      }
+                    });
+                  },
+                  borderRadius: BorderRadius.circular(550.0),
+                  hoverColor: AppColors.themeColor,
+                  splashColor: AppColors.lowGreen,
+                  child: buildSocialButton(
+                    image: socialButtons[index],
+                    hover: socialBI == index ? true : false,
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
         Constants.sizedBox(height: 18),
         FadeInUp(
           duration: const Duration(milliseconds: 1800),
           child: AppButton.buildMaterialButton(
               text: "Download CV",
               onTap: () {
-                _downloadCV();
+                _launchURL('assets/cvpdf/nid-4207630692.pdf');
+                //_downloadCV();
               }),
         ),
         Constants.sizedBox(height: 40),
       ],
     );
+
+
+  }
+
+
+  void _launchURL(String url) async {
+    if (!await launch(
+      url,
+      forceSafariVC: true,
+      forceWebView: true,
+      enableJavaScript: true,
+    ))
+    {
+      throw 'Could not launch $url';
+    }
   }
 
   Widget buildSocialButton({required String image, required bool hover}) {
