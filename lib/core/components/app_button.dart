@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/core/res/app_color.dart';
-import 'package:my_portfolio/core/res/app_text_style.dart';
+import 'package:my_portfolio/core/utils/app_color.dart';
+import 'package:my_portfolio/core/utils/app_text_style.dart';
 
 class AppButton{
 

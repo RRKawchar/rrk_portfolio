@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/core/res/app_assets.dart';
-import 'package:my_portfolio/core/res/app_color.dart';
+import 'package:my_portfolio/core/utils/app_assets.dart';
+import 'package:my_portfolio/core/utils/app_color.dart';
 
 class ProfileAnimation extends StatefulWidget {
   const ProfileAnimation({super.key});
@@ -17,9 +17,9 @@ class _ProfileAnimationState extends State<ProfileAnimation>with TickerProviderS
 
   @override
   void initState() {
-    _controller=AnimationController(vsync: this,duration: Duration(seconds: 1))
+    _controller=AnimationController(vsync: this,duration:const Duration(seconds: 1))
     ..repeat(reverse: true);
-    _animation=Tween(begin: Offset(0, 0.1),end: const Offset(0, 0.2)).animate(_controller);
+    _animation=Tween(begin:const Offset(0, 0.1),end: const Offset(0, 0.2)).animate(_controller);
     super.initState();
   }
 

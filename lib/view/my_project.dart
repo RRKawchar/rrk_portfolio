@@ -2,20 +2,20 @@
 
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/core/helper/helper_class.dart';
-import 'package:my_portfolio/core/res/app_assets.dart';
-import 'package:my_portfolio/core/res/app_color.dart';
-import 'package:my_portfolio/core/res/app_text_style.dart';
-import 'package:my_portfolio/core/res/constants.dart';
+import 'package:my_portfolio/core/responsive/responsive_class.dart';
+import 'package:my_portfolio/core/utils/app_assets.dart';
+import 'package:my_portfolio/core/utils/app_color.dart';
+import 'package:my_portfolio/core/utils/app_text_style.dart';
+import 'package:my_portfolio/core/utils/constants.dart';
 
-class MyPortfolio extends StatefulWidget {
-  const MyPortfolio({super.key});
+class MyProjects extends StatefulWidget {
+  const MyProjects({super.key});
 
   @override
-  State<MyPortfolio> createState() => _MyPortfolioState();
+  State<MyProjects> createState() => _MyProjectsState();
 }
 
-class _MyPortfolioState extends State<MyPortfolio> {
+class _MyProjectsState extends State<MyProjects> {
   final onHoverEffect = Matrix4.identity()..scale(1.0);
 
   List<String> images = [
@@ -32,13 +32,13 @@ class _MyPortfolioState extends State<MyPortfolio> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    return HelperClass(
+    return ResponsiveClass(
       bgColor: AppColors.bgColor2,
       mobile:Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           buildMyProjectText(),
-          Constants.sizedBox(height: 40),
+          const SizedBox(height: 40,),
           buildProjectGridView(size: size, crossAxisCount: 1,)
         ],
       ),
@@ -46,7 +46,7 @@ class _MyPortfolioState extends State<MyPortfolio> {
         mainAxisSize: MainAxisSize.min,
         children: [
           buildMyProjectText(),
-          Constants.sizedBox(height: 40),
+          const SizedBox(height: 40,),
           buildProjectGridView(size: size, crossAxisCount: 2,)
         ],
       ),
@@ -54,7 +54,7 @@ class _MyPortfolioState extends State<MyPortfolio> {
         mainAxisSize: MainAxisSize.min,
         children: [
           buildMyProjectText(),
-          Constants.sizedBox(height: 40),
+          const SizedBox(height: 40,),
           buildProjectGridView(size: size, crossAxisCount: 3)
         ],
       ),
@@ -127,7 +127,7 @@ class _MyPortfolioState extends State<MyPortfolio> {
                             style: AppTextStyle.montserratStyle(
                                 color: Colors.black87, fontSize: 20),
                           ),
-                          Constants.sizedBox(height: 15),
+                          const SizedBox(height: 15,),
                           Text(
                             "With a strong foundation in Android app development and an affinity for elegant design,"
                             "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
@@ -136,7 +136,7 @@ class _MyPortfolioState extends State<MyPortfolio> {
                             ),
                             textAlign: TextAlign.center,
                           ),
-                          Constants.sizedBox(height: 30),
+                          const SizedBox(height: 30,),
                           CircleAvatar(
                             radius: 25,
                             backgroundColor: Colors.white,

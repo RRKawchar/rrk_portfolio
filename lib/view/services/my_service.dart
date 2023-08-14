@@ -1,10 +1,11 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/core/helper/helper_class.dart';
-import 'package:my_portfolio/core/res/app_assets.dart';
-import 'package:my_portfolio/core/res/app_color.dart';
-import 'package:my_portfolio/core/res/app_text_style.dart';
-import 'package:my_portfolio/core/res/constants.dart';
+import 'package:my_portfolio/core/responsive/responsive_class.dart';
+import 'package:my_portfolio/core/utils/app_assets.dart';
+import 'package:my_portfolio/core/utils/app_color.dart';
+import 'package:my_portfolio/core/utils/app_text_style.dart';
+import 'package:my_portfolio/view/services/widget/service_android_card.dart';
+import 'package:my_portfolio/view/services/widget/service_ios_card.dart';
 
 class MyService extends StatefulWidget {
   const MyService({super.key});
@@ -22,123 +23,37 @@ class _MyServiceState extends State<MyService> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    return HelperClass(
+    return ResponsiveClass(
       bgColor: AppColors.bgColor,
-      mobile:Column(
+      mobile: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           buildMyServicesText(),
-          Constants.sizedBox(height: 60),
-          InkWell(
-            onTap: () {},
+          const SizedBox(height: 60),
+
+          /// Android Card
+          ServiceAndroidCard(
             onHover: (value) {
               setState(() {
                 isAndroidHover = value;
               });
             },
-            child: buildAnimatedContainer(
-              isHover: isAndroidHover,
-              widget: Column(
-                children: [
-                  Image.asset(
-                    AppAssets.androidIcon,
-                    height: 50,
-                    width: 50,
-                  ),
-                  Constants.sizedBox(height: 30),
-                  Text(
-                    "Android Development",
-                    style:
-                    AppTextStyle.montserratStyle(color: Colors.white),
-                  ),
-                  Constants.sizedBox(height: 20),
-                  Text(
-                    "With a strong foundation in Android app development and an affinity for elegant design,"
-                        "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
-                    style: AppTextStyle.normalStyle(fontSize: 14),
-                  ),
-                  Constants.sizedBox(height: 30),
-                  Row(
-                    children: [
-                      Image.asset(
-                        AppAssets.toolsIcon,
-                        width: 18,
-                        height: 18,
-                      ),
-                      Constants.sizedBox(width: 10),
-                      Text(
-                        "Flutter(Dart)",
-                        style: AppTextStyle.normalStyle(fontSize: 12),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Image.asset(
-                        AppAssets.toolsIcon,
-                        width: 18,
-                        height: 18,
-                      ),
-                      Constants.sizedBox(width: 10),
-                      Text(
-                        "Android(Java)",
-                        style: AppTextStyle.normalStyle(fontSize: 12),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+            isHover: isAndroidHover,
           ),
-          Constants.sizedBox(height: 24),
-          InkWell(
-            onTap: () {},
-            onHover: (value) {
-              setState(() {
-                isIosHover = value;
-              });
-            },
-            child: buildAnimatedContainer(
-              isHover: isIosHover,
-              widget: Column(
-                children: [
-                  Image.asset(
-                    AppAssets.iosIcon,
-                    height: 50,
-                    width: 50,
-                  ),
-                  Constants.sizedBox(height: 30),
-                  Text(
-                    "iOS Development",
-                    style:
-                    AppTextStyle.montserratStyle(color: Colors.white),
-                  ),
-                  Constants.sizedBox(height: 20),
-                  Text(
-                    "With a strong foundation in iOS app development and an affinity for elegant design,"
-                        "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
-                    style: AppTextStyle.normalStyle(fontSize: 14),
-                  ),
-                  Constants.sizedBox(height: 30),
-                  Row(
-                    children: [
-                      Image.asset(
-                        AppAssets.toolsIcon,
-                        width: 18,
-                        height: 18,
-                      ),
-                      Constants.sizedBox(width: 10),
-                      Text(
-                        "Flutter(Dart)",
-                        style: AppTextStyle.normalStyle(fontSize: 12),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Constants.sizedBox(height: 24),
+
+          const SizedBox(height: 24),
+
+          /// Ios Card
+          ServiceIosCard(
+              onHover: (value) {
+                setState(() {
+                  isIosHover = value;
+                });
+              },
+              isHover: isIosHover),
+
+          const SizedBox(height: 24),
+
           InkWell(
             onTap: () {},
             onHover: (value) {
@@ -155,19 +70,24 @@ class _MyServiceState extends State<MyService> {
                     height: 50,
                     width: 50,
                   ),
-                  Constants.sizedBox(height: 30),
+                  const SizedBox(
+                    height: 30,
+                  ),
                   Text(
                     "Java Development",
-                    style:
-                    AppTextStyle.montserratStyle(color: Colors.white),
+                    style: AppTextStyle.montserratStyle(color: Colors.white),
                   ),
-                  Constants.sizedBox(height: 20),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Text(
                     "With a strong foundation in Desktop application development and an affinity for elegant design,"
-                        "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
+                    "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
                     style: AppTextStyle.normalStyle(fontSize: 14),
                   ),
-                  Constants.sizedBox(height: 25),
+                  const SizedBox(
+                    height: 25,
+                  ),
                   Row(
                     children: [
                       Image.asset(
@@ -175,7 +95,9 @@ class _MyServiceState extends State<MyService> {
                         width: 18,
                         height: 18,
                       ),
-                      Constants.sizedBox(width: 10),
+                      const SizedBox(
+                        width: 10,
+                      ),
                       Text(
                         "Java",
                         style: AppTextStyle.normalStyle(fontSize: 12),
@@ -189,7 +111,9 @@ class _MyServiceState extends State<MyService> {
                         width: 18,
                         height: 18,
                       ),
-                      Constants.sizedBox(width: 10),
+                      const SizedBox(
+                        width: 10,
+                      ),
                       Text(
                         "Java Swing",
                         style: AppTextStyle.normalStyle(fontSize: 12),
@@ -203,7 +127,9 @@ class _MyServiceState extends State<MyService> {
                         width: 18,
                         height: 18,
                       ),
-                      Constants.sizedBox(width: 10),
+                      const SizedBox(
+                        width: 10,
+                      ),
                       Text(
                         "xampp/wamp",
                         style: AppTextStyle.normalStyle(fontSize: 12),
@@ -214,7 +140,9 @@ class _MyServiceState extends State<MyService> {
               ),
             ),
           ),
-          Constants.sizedBox(height: 24),
+          const SizedBox(
+            height: 24,
+          ),
           InkWell(
             onTap: () {},
             onHover: (value) {
@@ -231,19 +159,24 @@ class _MyServiceState extends State<MyService> {
                     height: 50,
                     width: 50,
                   ),
-                  Constants.sizedBox(height: 30),
+                  const SizedBox(
+                    height: 30,
+                  ),
                   Text(
                     "UX/UI Designing",
-                    style:
-                    AppTextStyle.montserratStyle(color: Colors.white),
+                    style: AppTextStyle.montserratStyle(color: Colors.white),
                   ),
-                  Constants.sizedBox(height: 20),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Text(
                     "With a strong foundation in Android app development and an affinity for elegant design,"
-                        "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
+                    "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
                     style: AppTextStyle.normalStyle(fontSize: 14),
                   ),
-                  Constants.sizedBox(height: 30),
+                  const SizedBox(
+                    height: 30,
+                  ),
                   Row(
                     children: [
                       Image.asset(
@@ -251,7 +184,9 @@ class _MyServiceState extends State<MyService> {
                         width: 18,
                         height: 18,
                       ),
-                      Constants.sizedBox(width: 10),
+                      const SizedBox(
+                        width: 10,
+                      ),
                       Text(
                         "Adobe XD",
                         style: AppTextStyle.normalStyle(fontSize: 12),
@@ -265,7 +200,9 @@ class _MyServiceState extends State<MyService> {
                         width: 18,
                         height: 18,
                       ),
-                      Constants.sizedBox(width: 10),
+                      const SizedBox(
+                        width: 10,
+                      ),
                       Text(
                         "Figma",
                         style: AppTextStyle.normalStyle(fontSize: 12),
@@ -279,7 +216,9 @@ class _MyServiceState extends State<MyService> {
                         width: 18,
                         height: 18,
                       ),
-                      Constants.sizedBox(width: 10),
+                      const SizedBox(
+                        width: 10,
+                      ),
                       Text(
                         "Photoshop",
                         style: AppTextStyle.normalStyle(fontSize: 12),
@@ -296,7 +235,9 @@ class _MyServiceState extends State<MyService> {
         mainAxisSize: MainAxisSize.min,
         children: [
           buildMyServicesText(),
-          Constants.sizedBox(height: 60),
+          const SizedBox(
+            height: 60,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -316,19 +257,25 @@ class _MyServiceState extends State<MyService> {
                         height: 50,
                         width: 50,
                       ),
-                      Constants.sizedBox(height: 30),
+                      const SizedBox(
+                        height: 30,
+                      ),
                       Text(
                         "Android Development",
                         style:
                             AppTextStyle.montserratStyle(color: Colors.white),
                       ),
-                      Constants.sizedBox(height: 20),
+                      const SizedBox(
+                        height: 20,
+                      ),
                       Text(
                         "With a strong foundation in Android app development and an affinity for elegant design,"
                         "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
                         style: AppTextStyle.normalStyle(fontSize: 14),
                       ),
-                      Constants.sizedBox(height: 30),
+                      const SizedBox(
+                        height: 30,
+                      ),
                       Row(
                         children: [
                           Image.asset(
@@ -336,7 +283,9 @@ class _MyServiceState extends State<MyService> {
                             width: 18,
                             height: 18,
                           ),
-                          Constants.sizedBox(width: 10),
+                          const SizedBox(
+                            width: 10,
+                          ),
                           Text(
                             "Flutter(Dart)",
                             style: AppTextStyle.normalStyle(fontSize: 12),
@@ -350,7 +299,9 @@ class _MyServiceState extends State<MyService> {
                             width: 18,
                             height: 18,
                           ),
-                          Constants.sizedBox(width: 10),
+                          const SizedBox(
+                            width: 10,
+                          ),
                           Text(
                             "Android(Java)",
                             style: AppTextStyle.normalStyle(fontSize: 12),
@@ -361,7 +312,9 @@ class _MyServiceState extends State<MyService> {
                   ),
                 ),
               ),
-              Constants.sizedBox(width: 18),
+              const SizedBox(
+                width: 18,
+              ),
               InkWell(
                 onTap: () {},
                 onHover: (value) {
@@ -378,19 +331,25 @@ class _MyServiceState extends State<MyService> {
                         height: 50,
                         width: 50,
                       ),
-                      Constants.sizedBox(height: 30),
+                      const SizedBox(
+                        height: 30,
+                      ),
                       Text(
                         "iOS Development",
                         style:
                             AppTextStyle.montserratStyle(color: Colors.white),
                       ),
-                      Constants.sizedBox(height: 20),
+                      const SizedBox(
+                        height: 20,
+                      ),
                       Text(
                         "With a strong foundation in iOS app development and an affinity for elegant design,"
                         "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
                         style: AppTextStyle.normalStyle(fontSize: 14),
                       ),
-                      Constants.sizedBox(height: 30),
+                      const SizedBox(
+                        height: 30,
+                      ),
                       Row(
                         children: [
                           Image.asset(
@@ -398,7 +357,9 @@ class _MyServiceState extends State<MyService> {
                             width: 18,
                             height: 18,
                           ),
-                          Constants.sizedBox(width: 10),
+                          const SizedBox(
+                            width: 10,
+                          ),
                           Text(
                             "Flutter(Dart)",
                             style: AppTextStyle.normalStyle(fontSize: 12),
@@ -411,7 +372,9 @@ class _MyServiceState extends State<MyService> {
               ),
             ],
           ),
-          Constants.sizedBox(height: 24),
+          const SizedBox(
+            height: 24,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -431,19 +394,25 @@ class _MyServiceState extends State<MyService> {
                         height: 50,
                         width: 50,
                       ),
-                      Constants.sizedBox(height: 30),
+                      const SizedBox(
+                        height: 30,
+                      ),
                       Text(
                         "UX/UI Designing",
                         style:
                             AppTextStyle.montserratStyle(color: Colors.white),
                       ),
-                      Constants.sizedBox(height: 20),
+                      const SizedBox(
+                        height: 20,
+                      ),
                       Text(
                         "With a strong foundation in Android app development and an affinity for elegant design,"
                         "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
                         style: AppTextStyle.normalStyle(fontSize: 14),
                       ),
-                      Constants.sizedBox(height: 30),
+                      const SizedBox(
+                        height: 30,
+                      ),
                       Row(
                         children: [
                           Image.asset(
@@ -451,7 +420,9 @@ class _MyServiceState extends State<MyService> {
                             width: 18,
                             height: 18,
                           ),
-                          Constants.sizedBox(width: 10),
+                          const SizedBox(
+                            width: 10,
+                          ),
                           Text(
                             "Adobe XD",
                             style: AppTextStyle.normalStyle(fontSize: 12),
@@ -465,7 +436,9 @@ class _MyServiceState extends State<MyService> {
                             width: 18,
                             height: 18,
                           ),
-                          Constants.sizedBox(width: 10),
+                          const SizedBox(
+                            width: 10,
+                          ),
                           Text(
                             "Figma",
                             style: AppTextStyle.normalStyle(fontSize: 12),
@@ -479,7 +452,9 @@ class _MyServiceState extends State<MyService> {
                             width: 18,
                             height: 18,
                           ),
-                          Constants.sizedBox(width: 10),
+                          const SizedBox(
+                            width: 10,
+                          ),
                           Text(
                             "Photoshop",
                             style: AppTextStyle.normalStyle(fontSize: 12),
@@ -490,7 +465,9 @@ class _MyServiceState extends State<MyService> {
                   ),
                 ),
               ),
-              Constants.sizedBox(width: 18),
+              const SizedBox(
+                width: 18,
+              ),
               InkWell(
                 onTap: () {},
                 onHover: (value) {
@@ -507,19 +484,25 @@ class _MyServiceState extends State<MyService> {
                         height: 50,
                         width: 50,
                       ),
-                      Constants.sizedBox(height: 30),
+                      const SizedBox(
+                        height: 30,
+                      ),
                       Text(
                         "Java Development",
                         style:
                             AppTextStyle.montserratStyle(color: Colors.white),
                       ),
-                      Constants.sizedBox(height: 20),
+                      const SizedBox(
+                        height: 20,
+                      ),
                       Text(
                         "With a strong foundation in Desktop application development and an affinity for elegant design,"
                         "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
                         style: AppTextStyle.normalStyle(fontSize: 14),
                       ),
-                      Constants.sizedBox(height: 25),
+                      const SizedBox(
+                        height: 25,
+                      ),
                       Row(
                         children: [
                           Image.asset(
@@ -527,7 +510,9 @@ class _MyServiceState extends State<MyService> {
                             width: 18,
                             height: 18,
                           ),
-                          Constants.sizedBox(width: 10),
+                          const SizedBox(
+                            width: 10,
+                          ),
                           Text(
                             "Java",
                             style: AppTextStyle.normalStyle(fontSize: 12),
@@ -541,7 +526,9 @@ class _MyServiceState extends State<MyService> {
                             width: 18,
                             height: 18,
                           ),
-                          Constants.sizedBox(width: 10),
+                          const SizedBox(
+                            width: 10,
+                          ),
                           Text(
                             "Java Swing",
                             style: AppTextStyle.normalStyle(fontSize: 12),
@@ -555,7 +542,9 @@ class _MyServiceState extends State<MyService> {
                             width: 18,
                             height: 18,
                           ),
-                          Constants.sizedBox(width: 10),
+                          const SizedBox(
+                            width: 10,
+                          ),
                           Text(
                             "xampp/wamp",
                             style: AppTextStyle.normalStyle(fontSize: 12),
@@ -574,7 +563,9 @@ class _MyServiceState extends State<MyService> {
         mainAxisSize: MainAxisSize.min,
         children: [
           buildMyServicesText(),
-          Constants.sizedBox(height: 60),
+          const SizedBox(
+            height: 60,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -594,19 +585,25 @@ class _MyServiceState extends State<MyService> {
                         height: 50,
                         width: 50,
                       ),
-                      Constants.sizedBox(height: 30),
+                      const SizedBox(
+                        height: 30,
+                      ),
                       Text(
                         "Android Development",
                         style:
                             AppTextStyle.montserratStyle(color: Colors.white),
                       ),
-                      Constants.sizedBox(height: 20),
+                      const SizedBox(
+                        height: 20,
+                      ),
                       Text(
                         "With a strong foundation in Android app development and an affinity for elegant design,"
                         "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
                         style: AppTextStyle.normalStyle(fontSize: 14),
                       ),
-                      Constants.sizedBox(height: 30),
+                      const SizedBox(
+                        height: 30,
+                      ),
                       Row(
                         children: [
                           Image.asset(
@@ -614,7 +611,9 @@ class _MyServiceState extends State<MyService> {
                             width: 18,
                             height: 18,
                           ),
-                          Constants.sizedBox(width: 10),
+                          const SizedBox(
+                            width: 10,
+                          ),
                           Text(
                             "Flutter(Dart)",
                             style: AppTextStyle.normalStyle(fontSize: 12),
@@ -628,7 +627,9 @@ class _MyServiceState extends State<MyService> {
                             width: 18,
                             height: 18,
                           ),
-                          Constants.sizedBox(width: 10),
+                          const SizedBox(
+                            width: 10,
+                          ),
                           Text(
                             "Android(Java)",
                             style: AppTextStyle.normalStyle(fontSize: 12),
@@ -639,7 +640,9 @@ class _MyServiceState extends State<MyService> {
                   ),
                 ),
               ),
-              Constants.sizedBox(width: 18),
+              const SizedBox(
+                width: 18,
+              ),
               InkWell(
                 onTap: () {},
                 onHover: (value) {
@@ -656,19 +659,25 @@ class _MyServiceState extends State<MyService> {
                         height: 50,
                         width: 50,
                       ),
-                      Constants.sizedBox(height: 30),
+                      const SizedBox(
+                        height: 30,
+                      ),
                       Text(
                         "iOS Development",
                         style:
                             AppTextStyle.montserratStyle(color: Colors.white),
                       ),
-                      Constants.sizedBox(height: 20),
+                      const SizedBox(
+                        height: 20,
+                      ),
                       Text(
                         "With a strong foundation in iOS app development and an affinity for elegant design,"
                         "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
                         style: AppTextStyle.normalStyle(fontSize: 14),
                       ),
-                      Constants.sizedBox(height: 30),
+                      const SizedBox(
+                        height: 30,
+                      ),
                       Row(
                         children: [
                           Image.asset(
@@ -676,7 +685,9 @@ class _MyServiceState extends State<MyService> {
                             width: 18,
                             height: 18,
                           ),
-                          Constants.sizedBox(width: 10),
+                          const SizedBox(
+                            width: 10,
+                          ),
                           Text(
                             "Flutter(Dart)",
                             style: AppTextStyle.normalStyle(fontSize: 12),
@@ -687,7 +698,9 @@ class _MyServiceState extends State<MyService> {
                   ),
                 ),
               ),
-              Constants.sizedBox(width: 18),
+              const SizedBox(
+                width: 18,
+              ),
               InkWell(
                 onTap: () {},
                 onHover: (value) {
@@ -704,19 +717,25 @@ class _MyServiceState extends State<MyService> {
                         height: 50,
                         width: 50,
                       ),
-                      Constants.sizedBox(height: 30),
+                      const SizedBox(
+                        height: 30,
+                      ),
                       Text(
                         "Java Development",
                         style:
                             AppTextStyle.montserratStyle(color: Colors.white),
                       ),
-                      Constants.sizedBox(height: 20),
+                      const SizedBox(
+                        height: 20,
+                      ),
                       Text(
                         "With a strong foundation in Desktop application development and an affinity for elegant design,"
                         "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
                         style: AppTextStyle.normalStyle(fontSize: 14),
                       ),
-                      Constants.sizedBox(height: 25),
+                      const SizedBox(
+                        height: 25,
+                      ),
                       Row(
                         children: [
                           Image.asset(
@@ -724,7 +743,9 @@ class _MyServiceState extends State<MyService> {
                             width: 18,
                             height: 18,
                           ),
-                          Constants.sizedBox(width: 10),
+                          const SizedBox(
+                            width: 10,
+                          ),
                           Text(
                             "Java",
                             style: AppTextStyle.normalStyle(fontSize: 12),
@@ -738,7 +759,9 @@ class _MyServiceState extends State<MyService> {
                             width: 18,
                             height: 18,
                           ),
-                          Constants.sizedBox(width: 10),
+                          const SizedBox(
+                            width: 10,
+                          ),
                           Text(
                             "Java Swing",
                             style: AppTextStyle.normalStyle(fontSize: 12),
@@ -752,7 +775,9 @@ class _MyServiceState extends State<MyService> {
                             width: 18,
                             height: 18,
                           ),
-                          Constants.sizedBox(width: 10),
+                          const SizedBox(
+                            width: 10,
+                          ),
                           Text(
                             "xampp/wamp",
                             style: AppTextStyle.normalStyle(fontSize: 12),
@@ -763,7 +788,9 @@ class _MyServiceState extends State<MyService> {
                   ),
                 ),
               ),
-              Constants.sizedBox(width: 18),
+              const SizedBox(
+                width: 18,
+              ),
               InkWell(
                 onTap: () {},
                 onHover: (value) {
@@ -780,19 +807,25 @@ class _MyServiceState extends State<MyService> {
                         height: 50,
                         width: 50,
                       ),
-                      Constants.sizedBox(height: 30),
+                      const SizedBox(
+                        height: 30,
+                      ),
                       Text(
                         "UX/UI Designing",
                         style:
                             AppTextStyle.montserratStyle(color: Colors.white),
                       ),
-                      Constants.sizedBox(height: 20),
+                      const SizedBox(
+                        height: 20,
+                      ),
                       Text(
                         "With a strong foundation in Android app development and an affinity for elegant design,"
                         "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
                         style: AppTextStyle.normalStyle(fontSize: 14),
                       ),
-                      Constants.sizedBox(height: 30),
+                      const SizedBox(
+                        height: 30,
+                      ),
                       Row(
                         children: [
                           Image.asset(
@@ -800,7 +833,9 @@ class _MyServiceState extends State<MyService> {
                             width: 18,
                             height: 18,
                           ),
-                          Constants.sizedBox(width: 10),
+                          const SizedBox(
+                            width: 10,
+                          ),
                           Text(
                             "Adobe XD",
                             style: AppTextStyle.normalStyle(fontSize: 12),
@@ -814,7 +849,9 @@ class _MyServiceState extends State<MyService> {
                             width: 18,
                             height: 18,
                           ),
-                          Constants.sizedBox(width: 10),
+                          const SizedBox(
+                            width: 10,
+                          ),
                           Text(
                             "Figma",
                             style: AppTextStyle.normalStyle(fontSize: 12),
@@ -828,7 +865,9 @@ class _MyServiceState extends State<MyService> {
                             width: 18,
                             height: 18,
                           ),
-                          Constants.sizedBox(width: 10),
+                          const SizedBox(
+                            width: 10,
+                          ),
                           Text(
                             "Photoshop",
                             style: AppTextStyle.normalStyle(fontSize: 12),
@@ -843,28 +882,29 @@ class _MyServiceState extends State<MyService> {
           )
         ],
       ),
-
       paddingWidth: size.width * 0.01,
     );
   }
 
   FadeInDown buildMyServicesText() {
     return FadeInDown(
-        duration: const Duration(milliseconds: 1200),
-        child: RichText(
-          text: TextSpan(
-              text: "My",
+      duration: const Duration(milliseconds: 1200),
+      child: RichText(
+        text: TextSpan(
+          text: "My",
+          style: AppTextStyle.headingStyle(
+            fontSize: 30,
+          ),
+          children: [
+            TextSpan(
+              text: "Services",
               style: AppTextStyle.headingStyle(
-                fontSize: 30,
-              ),
-              children: [
-                TextSpan(
-                  text: "Services",
-                  style: AppTextStyle.headingStyle(
-                      fontSize: 30, color: AppColors.robinEdgeBlue),
-                ),
-              ]),
-        ));
+                  fontSize: 30, color: AppColors.robinEdgeBlue),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   AnimatedContainer buildAnimatedContainer({
@@ -879,8 +919,7 @@ class _MyServiceState extends State<MyService> {
       decoration: BoxDecoration(
         color: AppColors.bgColor2,
         borderRadius: BorderRadius.circular(30),
-        border:
-            isHover ? Border.all(color: AppColors.white, width: 2) : null,
+        border: isHover ? Border.all(color: AppColors.white, width: 2) : null,
         boxShadow: const [
           BoxShadow(
               color: Colors.black54,

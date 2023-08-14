@@ -2,9 +2,10 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/components/app_button.dart';
 import 'package:my_portfolio/core/helper/helper_class.dart';
-import 'package:my_portfolio/core/res/app_color.dart';
-import 'package:my_portfolio/core/res/app_text_style.dart';
-import 'package:my_portfolio/core/res/constants.dart';
+import 'package:my_portfolio/core/responsive/responsive_class.dart';
+import 'package:my_portfolio/core/utils/app_color.dart';
+import 'package:my_portfolio/core/utils/app_text_style.dart';
+import 'package:my_portfolio/core/utils/constants.dart';
 
 class ContactUs extends StatelessWidget {
   const ContactUs({super.key});
@@ -12,14 +13,14 @@ class ContactUs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    return HelperClass(
+    return ResponsiveClass(
       bgColor:AppColors.bgColor,
       mobile: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
           buildContactText(),
-          Constants.sizedBox(height: 40),
+          const SizedBox(height: 40,),
           Material(
             borderRadius: BorderRadius.circular(12),
             color: Colors.transparent,
@@ -30,7 +31,7 @@ class ContactUs extends StatelessWidget {
               decoration: buildInputDecoration(hintText: "Full Name"),
             ),
           ),
-          Constants.sizedBox(height: 20),
+          const SizedBox(height: 20,),
           Material(
             borderRadius: BorderRadius.circular(12),
             color: Colors.transparent,
@@ -42,7 +43,7 @@ class ContactUs extends StatelessWidget {
               buildInputDecoration(hintText: "Email Address"),
             ),
           ),
-          Constants.sizedBox(height: 20),
+          const SizedBox(height: 20,),
           Material(
             borderRadius: BorderRadius.circular(12),
             color: Colors.transparent,
@@ -54,7 +55,7 @@ class ContactUs extends StatelessWidget {
               buildInputDecoration(hintText: "Mobile Number"),
             ),
           ),
-          Constants.sizedBox(height: 20),
+          const SizedBox(height: 20,),
           Material(
             borderRadius: BorderRadius.circular(12),
             color: Colors.transparent,
@@ -66,7 +67,7 @@ class ContactUs extends StatelessWidget {
               buildInputDecoration(hintText: "Email Subject"),
             ),
           ),
-          Constants.sizedBox(height: 20),
+          const SizedBox(height: 20,),
           Material(
             borderRadius: BorderRadius.circular(12),
             color: Colors.transparent,
@@ -78,9 +79,9 @@ class ContactUs extends StatelessWidget {
               decoration: buildInputDecoration(hintText: "Your message!!"),
             ),
           ),
-          Constants.sizedBox(height: 20),
+          const SizedBox(height: 20,),
           AppButton.buildMaterialButton(text: "Send Message", onTap: () {}),
-          Constants.sizedBox(height: 30),
+          const SizedBox(height: 30,),
         ],
       ),
       tablet: buildForm(),
@@ -95,7 +96,7 @@ class ContactUs extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           buildContactText(),
-          Constants.sizedBox(height: 40),
+          const SizedBox(height: 40,),
           Row(
             children: [
               Expanded(
@@ -110,7 +111,7 @@ class ContactUs extends StatelessWidget {
                   ),
                 ),
               ),
-              Constants.sizedBox(width: 20),
+              const SizedBox(width: 20,),
               Expanded(
                 child: Material(
                   borderRadius: BorderRadius.circular(12),
@@ -126,7 +127,7 @@ class ContactUs extends StatelessWidget {
               ),
             ],
           ),
-          Constants.sizedBox(height: 20),
+          const SizedBox(height: 20,),
           Row(
             children: [
               Expanded(
@@ -142,7 +143,7 @@ class ContactUs extends StatelessWidget {
                   ),
                 ),
               ),
-              Constants.sizedBox(width: 20),
+              const SizedBox(width: 20,),
               Expanded(
                 child: Material(
                   borderRadius: BorderRadius.circular(12),
@@ -158,7 +159,7 @@ class ContactUs extends StatelessWidget {
               ),
             ],
           ),
-          Constants.sizedBox(height: 20),
+          const SizedBox(height: 20,),
           Material(
             borderRadius: BorderRadius.circular(12),
             color: Colors.transparent,
@@ -170,9 +171,9 @@ class ContactUs extends StatelessWidget {
               decoration: buildInputDecoration(hintText: "Your message!!"),
             ),
           ),
-          Constants.sizedBox(height: 20),
+          const SizedBox(height: 20,),
           AppButton.buildMaterialButton(text: "Send Message", onTap: () {}),
-          Constants.sizedBox(height: 40),
+          const SizedBox(height: 40,),
         ],
       );
   }

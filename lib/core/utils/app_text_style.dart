@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:my_portfolio/core/res/app_color.dart';
 
 class AppTextStyle {
   static TextStyle headerTextStyle({Color color=Colors.white}) {
