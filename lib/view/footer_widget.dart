@@ -10,7 +10,7 @@ class FooterScreen extends StatelessWidget {
     return Container(
       height: 70,
       width: size.width,
-      color: AppColors.bgColor2,
+      color: AppColors.cardColor,
       alignment: Alignment.centerRight,
       padding: const EdgeInsets.symmetric(horizontal: 40),
       child: InkWell(

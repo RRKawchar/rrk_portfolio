@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/utils/app_text_style.dart';
+import 'package:my_portfolio/core/utils/constants.dart';
 import 'package:my_portfolio/view/services/widget/animated_container_widget.dart';
 
 import '../../../core/utils/app_assets.dart';
@@ -38,8 +39,7 @@ class ServiceIosCard extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                "With a strong foundation in Android app development and an affinity for elegant design,"
-                "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
+                Constants.serviceIosText,
                 style: AppTextStyle.normalStyle(fontSize: 14),
               ),
               const SizedBox(

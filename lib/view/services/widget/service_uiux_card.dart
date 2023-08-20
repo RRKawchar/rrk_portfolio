@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/core/utils/app_assets.dart';
 import 'package:my_portfolio/core/utils/app_text_style.dart';
 import 'package:my_portfolio/core/utils/constants.dart';
 import 'package:my_portfolio/view/services/widget/animated_container_widget.dart';
 
-import '../../../core/utils/app_assets.dart';
-
-class ServiceAndroidCard extends StatelessWidget {
+class ServiceUiUxCard extends StatelessWidget {
   final void Function(bool)? onHover;
   final bool isHover;
-  const ServiceAndroidCard({
-    super.key,
-    required this.onHover,
-    required this.isHover,
-  });
+  const ServiceUiUxCard({super.key, this.onHover, required this.isHover,});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +19,7 @@ class ServiceAndroidCard extends StatelessWidget {
         child: Column(
           children: [
             Image.asset(
-              AppAssets.androidIcon,
+              AppAssets.designIcon,
               height: 50,
               width: 50,
             ),
@@ -32,14 +27,14 @@ class ServiceAndroidCard extends StatelessWidget {
               height: 30,
             ),
             Text(
-              "Android Development",
+              "UX/UI Designing",
               style: AppTextStyle.montserratStyle(color: Colors.white),
             ),
             const SizedBox(
               height: 20,
             ),
             Text(
-              Constants.serviceAndroidText,
+              Constants.serviceUiText,
               style: AppTextStyle.normalStyle(fontSize: 14),
             ),
             const SizedBox(
@@ -56,7 +51,7 @@ class ServiceAndroidCard extends StatelessWidget {
                   width: 10,
                 ),
                 Text(
-                  "Flutter(Dart)",
+                  "Adobe XD",
                   style: AppTextStyle.normalStyle(fontSize: 12),
                 ),
               ],
@@ -72,7 +67,23 @@ class ServiceAndroidCard extends StatelessWidget {
                   width: 10,
                 ),
                 Text(
-                  "Android(Java)",
+                  "Figma",
+                  style: AppTextStyle.normalStyle(fontSize: 12),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Image.asset(
+                  AppAssets.toolsIcon,
+                  width: 18,
+                  height: 18,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  "Photoshop",
                   style: AppTextStyle.normalStyle(fontSize: 12),
                 ),
               ],

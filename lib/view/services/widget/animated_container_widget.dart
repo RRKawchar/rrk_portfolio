@@ -14,7 +14,7 @@ class AnimatedContainerWidget extends StatelessWidget {
       alignment: Alignment.center,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
       decoration: BoxDecoration(
-        color: AppColors.bgColor2,
+        color: AppColors.cardColor,
         borderRadius: BorderRadius.circular(30),
         border: isHover ? Border.all(color: AppColors.white, width: 2) : null,
         boxShadow: const [

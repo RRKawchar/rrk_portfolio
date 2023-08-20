@@ -1,11 +1,11 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/responsive/responsive_class.dart';
-import 'package:my_portfolio/core/utils/app_assets.dart';
 import 'package:my_portfolio/core/utils/app_color.dart';
-import 'package:my_portfolio/core/utils/app_text_style.dart';
+import 'package:my_portfolio/view/services/widget/my_service_text.dart';
 import 'package:my_portfolio/view/services/widget/service_android_card.dart';
 import 'package:my_portfolio/view/services/widget/service_ios_card.dart';
+import 'package:my_portfolio/view/services/widget/service_java_card.dart';
+import 'package:my_portfolio/view/services/widget/service_uiux_card.dart';
 
 class MyService extends StatefulWidget {
   const MyService({super.key});
@@ -28,7 +28,7 @@ class _MyServiceState extends State<MyService> {
       mobile: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          buildMyServicesText(),
+          const MyServiceText(),
           const SizedBox(height: 60),
 
           /// Android Card
@@ -45,330 +45,70 @@ class _MyServiceState extends State<MyService> {
 
           /// Ios Card
           ServiceIosCard(
-              onHover: (value) {
-                setState(() {
-                  isIosHover = value;
-                });
-              },
-              isHover: isIosHover),
+            onHover: (value) {
+              setState(() {
+                isIosHover = value;
+              });
+            },
+            isHover: isIosHover,
+          ),
 
           const SizedBox(height: 24),
 
-          InkWell(
-            onTap: () {},
+          /// Java Card
+          ServiceJavaCard(
             onHover: (value) {
               setState(() {
                 isJavaHover = value;
               });
             },
-            child: buildAnimatedContainer(
-              isHover: isJavaHover,
-              widget: Column(
-                children: [
-                  Image.asset(
-                    AppAssets.javaIcon,
-                    height: 50,
-                    width: 50,
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Text(
-                    "Java Development",
-                    style: AppTextStyle.montserratStyle(color: Colors.white),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "With a strong foundation in Desktop application development and an affinity for elegant design,"
-                    "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
-                    style: AppTextStyle.normalStyle(fontSize: 14),
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  Row(
-                    children: [
-                      Image.asset(
-                        AppAssets.toolsIcon,
-                        width: 18,
-                        height: 18,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "Java",
-                        style: AppTextStyle.normalStyle(fontSize: 12),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Image.asset(
-                        AppAssets.toolsIcon,
-                        width: 18,
-                        height: 18,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "Java Swing",
-                        style: AppTextStyle.normalStyle(fontSize: 12),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Image.asset(
-                        AppAssets.toolsIcon,
-                        width: 18,
-                        height: 18,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "xampp/wamp",
-                        style: AppTextStyle.normalStyle(fontSize: 12),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+            isHover: isJavaHover,
           ),
           const SizedBox(
             height: 24,
           ),
-          InkWell(
-            onTap: () {},
+
+          /// Ux/Ui Designing
+          ServiceUiUxCard(
             onHover: (value) {
               setState(() {
                 isDesignHover = value;
               });
             },
-            child: buildAnimatedContainer(
-              isHover: isDesignHover,
-              widget: Column(
-                children: [
-                  Image.asset(
-                    AppAssets.designIcon,
-                    height: 50,
-                    width: 50,
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Text(
-                    "UX/UI Designing",
-                    style: AppTextStyle.montserratStyle(color: Colors.white),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "With a strong foundation in Android app development and an affinity for elegant design,"
-                    "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
-                    style: AppTextStyle.normalStyle(fontSize: 14),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Row(
-                    children: [
-                      Image.asset(
-                        AppAssets.toolsIcon,
-                        width: 18,
-                        height: 18,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "Adobe XD",
-                        style: AppTextStyle.normalStyle(fontSize: 12),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Image.asset(
-                        AppAssets.toolsIcon,
-                        width: 18,
-                        height: 18,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "Figma",
-                        style: AppTextStyle.normalStyle(fontSize: 12),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Image.asset(
-                        AppAssets.toolsIcon,
-                        width: 18,
-                        height: 18,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "Photoshop",
-                        style: AppTextStyle.normalStyle(fontSize: 12),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+            isHover: isDesignHover,
           ),
         ],
       ),
       tablet: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          buildMyServicesText(),
+          const MyServiceText(),
           const SizedBox(
             height: 60,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              InkWell(
-                onTap: () {},
-                onHover: (value) {
-                  setState(() {
-                    isAndroidHover = value;
-                  });
-                },
-                child: buildAnimatedContainer(
-                  isHover: isAndroidHover,
-                  widget: Column(
-                    children: [
-                      Image.asset(
-                        AppAssets.androidIcon,
-                        height: 50,
-                        width: 50,
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Text(
-                        "Android Development",
-                        style:
-                            AppTextStyle.montserratStyle(color: Colors.white),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "With a strong foundation in Android app development and an affinity for elegant design,"
-                        "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
-                        style: AppTextStyle.normalStyle(fontSize: 14),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            AppAssets.toolsIcon,
-                            width: 18,
-                            height: 18,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Flutter(Dart)",
-                            style: AppTextStyle.normalStyle(fontSize: 12),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            AppAssets.toolsIcon,
-                            width: 18,
-                            height: 18,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Android(Java)",
-                            style: AppTextStyle.normalStyle(fontSize: 12),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              /// Android Card
+              ServiceAndroidCard(
+                  onHover: (value) {
+                    setState(() {
+                      isAndroidHover = value;
+                    });
+                  },
+                  isHover: isAndroidHover),
               const SizedBox(
                 width: 18,
               ),
-              InkWell(
-                onTap: () {},
+
+              /// iOS Card
+              ServiceIosCard(
                 onHover: (value) {
                   setState(() {
                     isIosHover = value;
                   });
                 },
-                child: buildAnimatedContainer(
-                  isHover: isIosHover,
-                  widget: Column(
-                    children: [
-                      Image.asset(
-                        AppAssets.iosIcon,
-                        height: 50,
-                        width: 50,
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Text(
-                        "iOS Development",
-                        style:
-                            AppTextStyle.montserratStyle(color: Colors.white),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "With a strong foundation in iOS app development and an affinity for elegant design,"
-                        "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
-                        style: AppTextStyle.normalStyle(fontSize: 14),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            AppAssets.toolsIcon,
-                            width: 18,
-                            height: 18,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Flutter(Dart)",
-                            style: AppTextStyle.normalStyle(fontSize: 12),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                isHover: isIosHover,
               ),
             ],
           ),
@@ -378,183 +118,28 @@ class _MyServiceState extends State<MyService> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              InkWell(
-                onTap: () {},
-                onHover: (value) {
-                  setState(() {
-                    isDesignHover = value;
-                  });
-                },
-                child: buildAnimatedContainer(
-                  isHover: isDesignHover,
-                  widget: Column(
-                    children: [
-                      Image.asset(
-                        AppAssets.designIcon,
-                        height: 50,
-                        width: 50,
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Text(
-                        "UX/UI Designing",
-                        style:
-                            AppTextStyle.montserratStyle(color: Colors.white),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "With a strong foundation in Android app development and an affinity for elegant design,"
-                        "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
-                        style: AppTextStyle.normalStyle(fontSize: 14),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            AppAssets.toolsIcon,
-                            width: 18,
-                            height: 18,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Adobe XD",
-                            style: AppTextStyle.normalStyle(fontSize: 12),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            AppAssets.toolsIcon,
-                            width: 18,
-                            height: 18,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Figma",
-                            style: AppTextStyle.normalStyle(fontSize: 12),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            AppAssets.toolsIcon,
-                            width: 18,
-                            height: 18,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Photoshop",
-                            style: AppTextStyle.normalStyle(fontSize: 12),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              ///  Java Card for tablet
+
+              ServiceJavaCard(
+                  onHover: (value) {
+                    setState(() {
+                      isJavaHover = value;
+                    });
+                  },
+                  isHover: isJavaHover),
+
               const SizedBox(
                 width: 18,
               ),
-              InkWell(
-                onTap: () {},
-                onHover: (value) {
-                  setState(() {
-                    isJavaHover = value;
-                  });
-                },
-                child: buildAnimatedContainer(
-                  isHover: isJavaHover,
-                  widget: Column(
-                    children: [
-                      Image.asset(
-                        AppAssets.javaIcon,
-                        height: 50,
-                        width: 50,
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Text(
-                        "Java Development",
-                        style:
-                            AppTextStyle.montserratStyle(color: Colors.white),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "With a strong foundation in Desktop application development and an affinity for elegant design,"
-                        "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
-                        style: AppTextStyle.normalStyle(fontSize: 14),
-                      ),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            AppAssets.toolsIcon,
-                            width: 18,
-                            height: 18,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Java",
-                            style: AppTextStyle.normalStyle(fontSize: 12),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            AppAssets.toolsIcon,
-                            width: 18,
-                            height: 18,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Java Swing",
-                            style: AppTextStyle.normalStyle(fontSize: 12),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            AppAssets.toolsIcon,
-                            width: 18,
-                            height: 18,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "xampp/wamp",
-                            style: AppTextStyle.normalStyle(fontSize: 12),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+
+              /// Ui/Ux Designing Card
+              ServiceUiUxCard(
+                  onHover: (value) {
+                    setState(() {
+                      isDesignHover = value;
+                    });
+                  },
+                  isHover: isDesignHover),
             ],
           ),
         ],
@@ -562,321 +147,59 @@ class _MyServiceState extends State<MyService> {
       desktop: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          buildMyServicesText(),
+          const MyServiceText(),
           const SizedBox(
             height: 60,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              InkWell(
-                onTap: () {},
+              ServiceAndroidCard(
                 onHover: (value) {
                   setState(() {
                     isAndroidHover = value;
                   });
                 },
-                child: buildAnimatedContainer(
-                  isHover: isAndroidHover,
-                  widget: Column(
-                    children: [
-                      Image.asset(
-                        AppAssets.androidIcon,
-                        height: 50,
-                        width: 50,
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Text(
-                        "Android Development",
-                        style:
-                            AppTextStyle.montserratStyle(color: Colors.white),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "With a strong foundation in Android app development and an affinity for elegant design,"
-                        "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
-                        style: AppTextStyle.normalStyle(fontSize: 14),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            AppAssets.toolsIcon,
-                            width: 18,
-                            height: 18,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Flutter(Dart)",
-                            style: AppTextStyle.normalStyle(fontSize: 12),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            AppAssets.toolsIcon,
-                            width: 18,
-                            height: 18,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Android(Java)",
-                            style: AppTextStyle.normalStyle(fontSize: 12),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                isHover: isAndroidHover,
               ),
               const SizedBox(
                 width: 18,
               ),
-              InkWell(
-                onTap: () {},
+
+              /// iOS Service Card
+              ServiceIosCard(
                 onHover: (value) {
                   setState(() {
                     isIosHover = value;
                   });
                 },
-                child: buildAnimatedContainer(
-                  isHover: isIosHover,
-                  widget: Column(
-                    children: [
-                      Image.asset(
-                        AppAssets.iosIcon,
-                        height: 50,
-                        width: 50,
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Text(
-                        "iOS Development",
-                        style:
-                            AppTextStyle.montserratStyle(color: Colors.white),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "With a strong foundation in iOS app development and an affinity for elegant design,"
-                        "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
-                        style: AppTextStyle.normalStyle(fontSize: 14),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            AppAssets.toolsIcon,
-                            width: 18,
-                            height: 18,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Flutter(Dart)",
-                            style: AppTextStyle.normalStyle(fontSize: 12),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                isHover: isIosHover,
               ),
               const SizedBox(
                 width: 18,
               ),
-              InkWell(
-                onTap: () {},
+
+              /// Java Service card
+              ServiceJavaCard(
                 onHover: (value) {
                   setState(() {
                     isJavaHover = value;
                   });
                 },
-                child: buildAnimatedContainer(
                   isHover: isJavaHover,
-                  widget: Column(
-                    children: [
-                      Image.asset(
-                        AppAssets.javaIcon,
-                        height: 50,
-                        width: 50,
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Text(
-                        "Java Development",
-                        style:
-                            AppTextStyle.montserratStyle(color: Colors.white),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "With a strong foundation in Desktop application development and an affinity for elegant design,"
-                        "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
-                        style: AppTextStyle.normalStyle(fontSize: 14),
-                      ),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            AppAssets.toolsIcon,
-                            width: 18,
-                            height: 18,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Java",
-                            style: AppTextStyle.normalStyle(fontSize: 12),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            AppAssets.toolsIcon,
-                            width: 18,
-                            height: 18,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Java Swing",
-                            style: AppTextStyle.normalStyle(fontSize: 12),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            AppAssets.toolsIcon,
-                            width: 18,
-                            height: 18,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "xampp/wamp",
-                            style: AppTextStyle.normalStyle(fontSize: 12),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+
               ),
               const SizedBox(
                 width: 18,
               ),
-              InkWell(
-                onTap: () {},
-                onHover: (value) {
-                  setState(() {
-                    isDesignHover = value;
-                  });
-                },
-                child: buildAnimatedContainer(
-                  isHover: isDesignHover,
-                  widget: Column(
-                    children: [
-                      Image.asset(
-                        AppAssets.designIcon,
-                        height: 50,
-                        width: 50,
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Text(
-                        "UX/UI Designing",
-                        style:
-                            AppTextStyle.montserratStyle(color: Colors.white),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "With a strong foundation in Android app development and an affinity for elegant design,"
-                        "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
-                        style: AppTextStyle.normalStyle(fontSize: 14),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            AppAssets.toolsIcon,
-                            width: 18,
-                            height: 18,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Adobe XD",
-                            style: AppTextStyle.normalStyle(fontSize: 12),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            AppAssets.toolsIcon,
-                            width: 18,
-                            height: 18,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Figma",
-                            style: AppTextStyle.normalStyle(fontSize: 12),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            AppAssets.toolsIcon,
-                            width: 18,
-                            height: 18,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Photoshop",
-                            style: AppTextStyle.normalStyle(fontSize: 12),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+
+              ServiceUiUxCard(
+                  onHover: (value) {
+                    setState(() {
+                      isDesignHover = value;
+                    });
+                  },
+                  isHover: isDesignHover
               ),
             ],
           )
@@ -886,52 +209,7 @@ class _MyServiceState extends State<MyService> {
     );
   }
 
-  FadeInDown buildMyServicesText() {
-    return FadeInDown(
-      duration: const Duration(milliseconds: 1200),
-      child: RichText(
-        text: TextSpan(
-          text: "My",
-          style: AppTextStyle.headingStyle(
-            fontSize: 30,
-          ),
-          children: [
-            TextSpan(
-              text: "Services",
-              style: AppTextStyle.headingStyle(
-                  fontSize: 30, color: AppColors.robinEdgeBlue),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 
-  AnimatedContainer buildAnimatedContainer({
-    required Widget widget,
-    required bool isHover,
-  }) {
-    return AnimatedContainer(
-      width: isHover ? 370 : 360,
-      height: isHover ? 400 : 390,
-      alignment: Alignment.center,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-      decoration: BoxDecoration(
-        color: AppColors.bgColor2,
-        borderRadius: BorderRadius.circular(30),
-        border: isHover ? Border.all(color: AppColors.white, width: 2) : null,
-        boxShadow: const [
-          BoxShadow(
-              color: Colors.black54,
-              spreadRadius: 4.0,
-              blurRadius: 4.5,
-              offset: Offset(3.0, 4.5))
-        ],
-      ),
-      duration: const Duration(
-        milliseconds: 600,
-      ),
-      child: widget,
-    );
-  }
+
+
 }

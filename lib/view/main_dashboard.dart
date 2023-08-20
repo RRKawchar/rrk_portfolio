@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/utils/app_assets.dart';
 import 'package:my_portfolio/core/utils/app_color.dart';
 import 'package:my_portfolio/core/utils/app_text_style.dart';
-import 'package:my_portfolio/core/utils/constants.dart';
 import 'package:my_portfolio/view/about/about_me.dart';
 import 'package:my_portfolio/view/contact_us.dart';
 import 'package:my_portfolio/view/footer_widget.dart';
 import 'package:my_portfolio/view/home/home_screen.dart';
-import 'package:my_portfolio/view/my_project.dart';
+import 'package:my_portfolio/view/my_projects/my_project.dart';
 import 'package:my_portfolio/view/services/my_service.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
@@ -84,7 +83,7 @@ class _MainDashboardState extends State<MainDashboard> {
                     color: AppColors.white,
                     size: 32,
                   ),
-                  color: AppColors.bgColor2,
+                  color: AppColors.cardColor,
                   position: PopupMenuPosition.under,
                   itemBuilder: (BuildContext context) => menuItems
                       .asMap()

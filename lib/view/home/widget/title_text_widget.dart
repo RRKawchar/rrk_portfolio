@@ -37,6 +37,12 @@ class TitleTextWidget extends StatelessWidget {
             AppTextStyle.montserratStyle(color: Colors.lightBlueAccent),
             speed: const Duration(milliseconds: 60),
           ),
+          TypewriterAnimatedText(
+            Constants.softwareFlutter,
+            textStyle:
+            AppTextStyle.montserratStyle(color: Colors.lightBlueAccent),
+            speed: const Duration(milliseconds: 60),
+          ),
         ],
         pause: const Duration(milliseconds: 1000),
         displayFullTextOnTap: true,
