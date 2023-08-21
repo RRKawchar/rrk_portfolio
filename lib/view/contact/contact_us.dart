@@ -1,13 +1,11 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:my_portfolio/core/components/app_button.dart';
-import 'package:my_portfolio/core/helper/helper_class.dart';
 import 'package:my_portfolio/core/responsive/responsive_class.dart';
 import 'package:my_portfolio/core/services/app_service.dart';
 import 'package:my_portfolio/core/utils/app_color.dart';
 import 'package:my_portfolio/core/utils/app_text_style.dart';
-import 'package:my_portfolio/core/utils/constants.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ContactUs extends StatefulWidget {
   const ContactUs({super.key});
@@ -23,33 +21,23 @@ class _ContactUsState extends State<ContactUs> {
   final subController = TextEditingController();
   final messageController = TextEditingController();
 
+  sendEmail() {
+    if (nameController.text.isEmpty ||
+        emailController.text.isEmpty ||
+        phoneController.text.isEmpty ||
+        subController.text.isEmpty ||
+        messageController.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Please Fill The Form Properly!!");
 
-  void sendMessage(String name, String email,String phone, String subject,String message)async{
-    String invoiceContent=generateInvoiceContent(name, email, phone, subject, message);
-    final Uri emailUri=Uri(
-        scheme: "mailto",
-        path: "riyazurrohmankawchar@gmail.com",
-        query: "Subject=New%20Message&body=${Uri.encodeFull(invoiceContent)}"
-    );
-    if(await canLaunch(emailUri.toString())){
-      await launch(emailUri.toString());
-    }else{
-      kPrint("Could not launch email");
+    } else {
+      AppService.sendMessage(
+        nameController.text,
+        emailController.text,
+        phoneController.text,
+        subController.text,
+        messageController.text,
+      );
     }
-
-
-  }
-
-  static String generateInvoiceContent(String name,String email,String phone,String subject,String message){
-    return '''
-    New Message From Portfolio
-    ---------------------------
-    Full Name : $name
-    Email : $email
-    Phone Number : $phone
-    Email Subject : $subject,
-    Message : $message
-    ''';
   }
 
   @override
@@ -139,8 +127,15 @@ class _ContactUsState extends State<ContactUs> {
           AppButton.buildMaterialButton(
             text: "Send Message",
             onTap: () {
-            AppService.sendMessage(nameController.text, emailController.text, phoneController.text, subController.text, messageController.text);
-            kPrint("text");
+              // AppService.sendMessage(
+              //   nameController.text,
+              //   emailController.text,
+              //   phoneController.text,
+              //   subController.text,
+              //   messageController.text,
+              // );
+              // kPrint("text");
+              sendEmail();
             },
           ),
           const SizedBox(
@@ -253,8 +248,15 @@ class _ContactUsState extends State<ContactUs> {
         AppButton.buildMaterialButton(
           text: "Send Message",
           onTap: () {
-            AppService.sendMessage(nameController.text, emailController.text, phoneController.text, subController.text, messageController.text);
-            kPrint(nameController.text);
+            // AppService.sendMessage(
+            //   nameController.text,
+            //   emailController.text,
+            //   phoneController.text,
+            //   subController.text,
+            //   messageController.text,
+            // );
+            // kPrint(nameController.text);
+            sendEmail();
           },
         ),
         const SizedBox(
