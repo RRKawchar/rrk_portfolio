@@ -40,6 +40,8 @@ dependencies:
   animate_do: ^3.0.2
   scrollable_positioned_list: ^0.3.8
   url_launcher: ^6.1.12
+  fluttertoast: ^8.2.2
+  http: ^1.1.0
 
 dev_dependencies:
   flutter_test:

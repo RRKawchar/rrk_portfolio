@@ -1,11 +1,12 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:my_portfolio/core/components/app_button.dart';
 import 'package:my_portfolio/core/responsive/responsive_class.dart';
 import 'package:my_portfolio/core/services/app_service.dart';
 import 'package:my_portfolio/core/utils/app_color.dart';
-import 'package:my_portfolio/core/utils/app_text_style.dart';
+import 'package:my_portfolio/view/contact/widgets/build_input_decoration.dart';
+import 'package:my_portfolio/view/contact/widgets/contact_us_text.dart';
+import 'package:my_portfolio/view/contact/widgets/custom_textfield.dart';
 
 class ContactUs extends StatefulWidget {
   const ContactUs({super.key});
@@ -27,15 +28,14 @@ class _ContactUsState extends State<ContactUs> {
         phoneController.text.isEmpty ||
         subController.text.isEmpty ||
         messageController.text.isEmpty) {
-      Fluttertoast.showToast(msg: "Please Fill The Form Properly!!");
-
+      Fluttertoast.showToast(msg: "Please Fill The Form Properly!!",webPosition: 'left');
     } else {
       AppService.sendMessage(
-        nameController.text,
-        emailController.text,
-        phoneController.text,
-        subController.text,
-        messageController.text,
+        fullName: nameController.text,
+        email: emailController.text,
+        mobile: phoneController.text,
+        subject: subController.text,
+        message: messageController.text,
       );
     }
   }
@@ -45,201 +45,55 @@ class _ContactUsState extends State<ContactUs> {
     final Size size = MediaQuery.of(context).size;
     return ResponsiveClass(
       bgColor: AppColors.bgColor,
-      mobile: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          buildContactText(),
-          const SizedBox(
-            height: 40,
-          ),
-          Material(
-            borderRadius: BorderRadius.circular(12),
-            color: Colors.transparent,
-            elevation: 8,
-            child: TextField(
-              controller: nameController,
-              cursorColor: AppColors.white,
-              style: AppTextStyle.normalStyle(),
-              decoration: buildInputDecoration(hintText: "Full Name"),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Material(
-            borderRadius: BorderRadius.circular(12),
-            color: Colors.transparent,
-            elevation: 8,
-            child: TextField(
-              controller: emailController,
-              cursorColor: AppColors.white,
-              style: AppTextStyle.normalStyle(),
-              decoration: buildInputDecoration(hintText: "Email Address"),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Material(
-            borderRadius: BorderRadius.circular(12),
-            color: Colors.transparent,
-            elevation: 8,
-            child: TextField(
-              controller: phoneController,
-              cursorColor: AppColors.white,
-              style: AppTextStyle.normalStyle(),
-              decoration: buildInputDecoration(hintText: "Mobile Number"),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Material(
-            borderRadius: BorderRadius.circular(12),
-            color: Colors.transparent,
-            elevation: 8,
-            child: TextField(
-              controller: subController,
-              cursorColor: AppColors.white,
-              style: AppTextStyle.normalStyle(),
-              decoration: buildInputDecoration(hintText: "Email Subject"),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Material(
-            borderRadius: BorderRadius.circular(12),
-            color: Colors.transparent,
-            elevation: 8,
-            child: TextField(
-              controller: messageController,
-              maxLines: 15,
-              cursorColor: AppColors.white,
-              style: AppTextStyle.normalStyle(),
-              decoration: buildInputDecoration(hintText: "Your message!!"),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          AppButton.buildMaterialButton(
-            text: "Send Message",
-            onTap: () {
-              // AppService.sendMessage(
-              //   nameController.text,
-              //   emailController.text,
-              //   phoneController.text,
-              //   subController.text,
-              //   messageController.text,
-              // );
-              // kPrint("text");
-              sendEmail();
-            },
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-        ],
-      ),
+      mobile: _buildMobileForm(),
       tablet: buildForm(),
       desktop: buildForm(),
       paddingWidth: size.width * 0.2,
     );
   }
 
-  Column buildForm() {
+  Widget _buildMobileForm() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        buildContactText(),
+        const ContactUsText(),
         const SizedBox(
           height: 40,
         ),
-        Row(
-          children: [
-            Expanded(
-              child: Material(
-                borderRadius: BorderRadius.circular(12),
-                color: Colors.transparent,
-                elevation: 8,
-                child: TextField(
-                  controller: nameController,
-                  cursorColor: AppColors.white,
-                  style: AppTextStyle.normalStyle(),
-                  decoration: buildInputDecoration(hintText: "Full Name"),
-                ),
-              ),
-            ),
-            const SizedBox(
-              width: 20,
-            ),
-            Expanded(
-              child: Material(
-                borderRadius: BorderRadius.circular(12),
-                color: Colors.transparent,
-                elevation: 8,
-                child: TextField(
-                  controller: emailController,
-                  cursorColor: AppColors.white,
-                  style: AppTextStyle.normalStyle(),
-                  decoration: buildInputDecoration(hintText: "Email Address"),
-                ),
-              ),
-            ),
-          ],
+        CustomTextField(
+          controller: nameController,
+          inputDecoration: buildInputDecoration(
+            hintText: 'Full Name',
+          ),
         ),
-        const SizedBox(
-          height: 20,
+        const SizedBox(height: 20),
+        CustomTextField(
+          controller: emailController,
+          inputDecoration: buildInputDecoration(
+            hintText: 'Email Address',
+          ),
         ),
-        Row(
-          children: [
-            Expanded(
-              child: Material(
-                borderRadius: BorderRadius.circular(12),
-                color: Colors.transparent,
-                elevation: 8,
-                child: TextField(
-                  controller: phoneController,
-                  cursorColor: AppColors.white,
-                  style: AppTextStyle.normalStyle(),
-                  decoration: buildInputDecoration(hintText: "Mobile Number"),
-                ),
-              ),
-            ),
-            const SizedBox(
-              width: 20,
-            ),
-            Expanded(
-              child: Material(
-                borderRadius: BorderRadius.circular(12),
-                color: Colors.transparent,
-                elevation: 8,
-                child: TextField(
-                  controller: subController,
-                  cursorColor: AppColors.white,
-                  style: AppTextStyle.normalStyle(),
-                  decoration: buildInputDecoration(hintText: "Email Subject"),
-                ),
-              ),
-            ),
-          ],
+        const SizedBox(height: 20),
+        CustomTextField(
+          controller: phoneController,
+          inputDecoration: buildInputDecoration(
+            hintText: "Mobile Number",
+          ),
         ),
-        const SizedBox(
-          height: 20,
+        const SizedBox(height: 20),
+        CustomTextField(
+          controller: subController,
+          inputDecoration: buildInputDecoration(
+            hintText: "Email Subject",
+          ),
         ),
-        Material(
-          borderRadius: BorderRadius.circular(12),
-          color: Colors.transparent,
-          elevation: 8,
-          child: TextField(
-            controller: messageController,
-            maxLines: 15,
-            cursorColor: AppColors.white,
-            style: AppTextStyle.normalStyle(),
-            decoration: buildInputDecoration(hintText: "Your message!!"),
+        const SizedBox(height: 20),
+        CustomTextField(
+          maxLines: 8,
+          controller: messageController,
+          inputDecoration: buildInputDecoration(
+            hintText: "Your Message!!",
           ),
         ),
         const SizedBox(
@@ -248,15 +102,91 @@ class _ContactUsState extends State<ContactUs> {
         AppButton.buildMaterialButton(
           text: "Send Message",
           onTap: () {
-            // AppService.sendMessage(
-            //   nameController.text,
-            //   emailController.text,
-            //   phoneController.text,
-            //   subController.text,
-            //   messageController.text,
-            // );
-            // kPrint(nameController.text);
+             sendEmail();
+          },
+        ),
+        const SizedBox(
+          height: 30,
+        ),
+      ],
+    );
+  }
+
+  Widget buildForm() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const ContactUsText(),
+        const SizedBox(
+          height: 40,
+        ),
+        Row(
+          children: [
+            Expanded(
+              child: CustomTextField(
+                controller: nameController,
+                inputDecoration: buildInputDecoration(
+                  hintText: 'Full Name',
+                ),
+              ),
+            ),
+            const SizedBox(
+              width: 20,
+            ),
+            Expanded(
+                child: CustomTextField(
+              controller: emailController,
+              inputDecoration: buildInputDecoration(
+                hintText: 'Email Address',
+              ),
+            )),
+          ],
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        Row(
+          children: [
+            Expanded(
+              child: CustomTextField(
+                controller: phoneController,
+                inputDecoration: buildInputDecoration(
+                  hintText: "Mobile Number",
+                ),
+              ),
+            ),
+            const SizedBox(
+              width: 20,
+            ),
+            Expanded(
+              child: CustomTextField(
+                controller: subController,
+                inputDecoration: buildInputDecoration(
+                  hintText: "Email Subject",
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        CustomTextField(
+          maxLines: 15,
+          controller: messageController,
+          inputDecoration: buildInputDecoration(
+            hintText: "Your Message!!",
+          ),
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        AppButton.buildMaterialButton(
+          text: "Send Message",
+          onTap: () {
             sendEmail();
+
           },
         ),
         const SizedBox(
@@ -264,41 +194,5 @@ class _ContactUsState extends State<ContactUs> {
         ),
       ],
     );
-  }
-
-  FadeInDown buildContactText() {
-    return FadeInDown(
-      duration: const Duration(milliseconds: 1200),
-      child: RichText(
-        text: TextSpan(
-            text: "Contact",
-            style: AppTextStyle.headingStyle(
-              fontSize: 30,
-            ),
-            children: [
-              TextSpan(
-                text: " Me!!",
-                style: AppTextStyle.headingStyle(
-                    fontSize: 30, color: AppColors.robinEdgeBlue),
-              ),
-            ]),
-      ),
-    );
-  }
-
-  InputDecoration buildInputDecoration({required String hintText}) {
-    return InputDecoration(
-        hintText: hintText,
-        hintStyle: AppTextStyle.comfortaaStyle(),
-        enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide.none),
-        focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide.none),
-        filled: true,
-        fillColor: AppColors.cardColor,
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 20, vertical: 12));
   }
 }

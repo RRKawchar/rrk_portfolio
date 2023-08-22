@@ -13,7 +13,7 @@ class AppUrl{
   /// Project Link
   static const String mfProjectLink="https://github.com/kawchar-zufaa/mf_foodmart#readme";
   static const String wallpaperProjectLink="https://github.com/RRKawchar/zing-walls#readme";
-  static const String eZoneProjectLink="https://github.com/RRKawchar/e-zone_app";
+  static const String eZoneProjectLink="https://github.com/RRKawchar/e-zone_app#readme";
   static const String countryProjectLink="https://github.com/RRKawchar/country_details_app#readme";
   static const String rajnityLink="https://play.google.com/store/apps/details?id=com.news.rajnity&hl=en&gl=US";
   static const String newsTubeLink="https://play.google.com/store/apps/details?id=com.news.newstube&hl=en&gl=US";

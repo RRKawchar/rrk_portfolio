@@ -3,7 +3,7 @@ import 'package:my_portfolio/core/utils/app_assets.dart';
 import 'package:my_portfolio/core/utils/app_color.dart';
 import 'package:my_portfolio/core/utils/app_text_style.dart';
 import 'package:my_portfolio/view/about/about_me.dart';
-import 'package:my_portfolio/view/contact_us.dart';
+import 'package:my_portfolio/view/contact/contact_us.dart';
 import 'package:my_portfolio/view/footer_widget.dart';
 import 'package:my_portfolio/view/home/home_screen.dart';
 import 'package:my_portfolio/view/my_projects/my_project.dart';
@@ -100,14 +100,17 @@ class _MainDashboardState extends State<MainDashboard> {
                       .toList(),
                 ),
                 const Spacer(),
-                const Text("Portfolio"),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: const Text("RRK Portfolio"),
+                ),
               ],
             );
           } else {
             return Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                const Text("Portfolio"),
+                const Text("RRK "),
                 const Spacer(),
                 SizedBox(
                   height: 30,
@@ -115,8 +118,9 @@ class _MainDashboardState extends State<MainDashboard> {
                     itemCount: menuItems.length,
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
-                    separatorBuilder: (context, child) =>
-                    const SizedBox(width: 8,),
+                    separatorBuilder: (context, child) => const SizedBox(
+                      width: 8,
+                    ),
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {
@@ -140,16 +144,16 @@ class _MainDashboardState extends State<MainDashboard> {
                     },
                   ),
                 ),
-                const SizedBox(height: 30,),
+                const SizedBox(
+                  height: 30,
+                ),
               ],
             );
           }
         }),
       ),
-      body:ScrollablePositionedList.builder(
-        scrollOffsetController: ScrollOffsetController(
-
-        ),
+      body: ScrollablePositionedList.builder(
+          scrollOffsetController: ScrollOffsetController(),
           itemCount: screenList.length,
           itemScrollController: _itemScrollController,
           itemBuilder: (context, index) {
@@ -158,7 +162,7 @@ class _MainDashboardState extends State<MainDashboard> {
     );
   }
 
-  AnimatedContainer buildNavBarAnimatedContainer(int index, bool hover) {
+  Widget buildNavBarAnimatedContainer(int index, bool hover) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
       alignment: Alignment.center,

@@ -9,7 +9,10 @@ import 'package:my_portfolio/core/utils/app_url.dart';
 class ProjectGridView extends StatefulWidget {
   final int crossAxisCount;
 
-  const ProjectGridView({super.key, required this.crossAxisCount,});
+  const ProjectGridView({
+    super.key,
+    required this.crossAxisCount,
+  });
 
   @override
   State<ProjectGridView> createState() => _ProjectGridViewState();
@@ -40,7 +43,7 @@ class _ProjectGridViewState extends State<ProjectGridView> {
 
   @override
   Widget build(BuildContext context) {
-    final Size size=MediaQuery.of(context).size;
+    final Size size = MediaQuery.of(context).size;
     return GridView.builder(
       itemCount: images.length,
       shrinkWrap: true,
@@ -68,12 +71,20 @@ class _ProjectGridViewState extends State<ProjectGridView> {
             child: Stack(
               alignment: Alignment.center,
               children: [
-                Container(
-                  height: size.height,
-                  decoration: BoxDecoration(
+                InkWell(
+                  onTap: (){
+                    AppService.launchURL(projects[index]);
+                  },
+                  child: Container(
+                    height: size.height,
+                    decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       image: DecorationImage(
-                          image: AssetImage(image), fit: BoxFit.fill)),
+                        image: AssetImage(image),
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
                 ),
                 Visibility(
                   visible: index == hoverIndex,
@@ -105,7 +116,7 @@ class _ProjectGridViewState extends State<ProjectGridView> {
                         ),
                         Text(
                           "With a strong foundation in Android app development and an affinity for elegant design,"
-                              "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
+                          "I specialize in crafting applications that captivate users and deliver exceptional functionality.",
                           style: AppTextStyle.normalStyle(
                             color: Colors.black87,
                           ),

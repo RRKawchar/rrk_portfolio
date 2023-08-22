@@ -1,8 +1,11 @@
+import 'dart:convert';
+
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:my_portfolio/core/helper/helper_class.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:http/http.dart' as http;
 
-class AppService{
-
+class AppService {
   static void launchURL(String url) async {
     if (!await launch(
       url,
@@ -15,36 +18,49 @@ class AppService{
   }
 
 
+  static Future sendMessage(
+      {required String fullName,
+        required String email,
+        required String mobile,
+        required String subject,
+        required String message}) async {
 
-  static void sendMessage(String name, String email, String phone, String subject, String message) async {
-    final Uri emailUri = Uri(
-      scheme: 'mailto',
-      path: 'riyazurrohmankawchar@gmail.com',
-      queryParameters: {
-        'subject': 'New Message',
-        'body': generateInvoiceContent(name, email, phone, subject, message),
-      },
+    const serviceId = 'service_xyhvfmo';
+    const templateId = 'template_20rxh77';
+    const userId = 'tdOvE4DYjqAgg9FwI';
+
+    final url = Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
+
+    final headers = {
+      'origin': 'http://localhost',
+      'Content-Type': 'application/json',
+    };
+
+    final body = {
+      'service_id': serviceId,
+      'template_id': templateId,
+      'user_id': userId,
+      'template_params': {
+        'user_name': fullName,
+        'user_email': email,
+        'to_email': 'riyazurrohmankawchar@gmail.com', // All time emails will be sent to this address
+        'user_subject': subject,
+        'user_message': message,
+      }
+    };
+
+    final response = await http.post(
+      url,
+      headers: headers,
+      body: json.encode(body), // Convert the body to a JSON string
     );
 
-    if (await canLaunch(emailUri.toString())) {
-      await launch(emailUri.toString());
+    if (response.statusCode == 200) {
+      Fluttertoast.showToast(msg: "Email sent Successfully!!");
+      kPrint(response.body);
     } else {
-     kPrint('Could not launch email');
+      Fluttertoast.showToast(msg: "Email Send Failed!!");
+      kPrint(response.body);
     }
   }
-
-  static String generateInvoiceContent(String name, String email, String phone, String subject, String message) {
-    return '''
-  New Message From Portfolio
-  ---------------------------
-  Full Name : $name
-  Email : $email
-  Phone Number : $phone
-  Email Subject : $subject,
-  Message : $message
-  ''';
-  }
-
-
-
 }
