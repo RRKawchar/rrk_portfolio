@@ -44,7 +44,6 @@ class _ContactUsState extends State<ContactUs> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return ResponsiveClass(
-      bgColor: AppColors.bgColor,
       mobile: _buildMobileForm(),
       tablet: buildForm(),
       desktop: buildForm(),

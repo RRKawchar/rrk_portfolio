@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTextStyle {
-  static TextStyle headerTextStyle({Color color=Colors.white}) {
+  static TextStyle headerTextStyle({Color color = Colors.white}) {
     return GoogleFonts.signikaNegative(
       fontSize: 18,
       fontWeight: FontWeight.w600,
-      color:color,
+      color: color,
     );
   }
 
@@ -28,17 +28,26 @@ class AppTextStyle {
         letterSpacing: 2);
   }
 
-  static TextStyle normalStyle({Color color = Colors.white,double fontSize=16.0}) {
+  static TextStyle normalStyle(
+      {Color color = Colors.white,
+      double fontSize = 16.0,
+      double height = 1.5}) {
     return TextStyle(
-        fontSize: fontSize,
-        fontWeight: FontWeight.w500,
-        color: color,
-        letterSpacing: 1.7,
-        height: 1.5);
+      fontSize: fontSize,
+      fontWeight: FontWeight.w500,
+      color: color,
+      letterSpacing: 1.7,
+      height: height,
+    );
   }
 
   static TextStyle comfortaaStyle() {
     return GoogleFonts.comfortaa(
         fontSize: 18, fontWeight: FontWeight.w800, color: Colors.grey);
+  }
+
+  static TextStyle archivoNarrow({double fontSize=80}) {
+    return GoogleFonts.archivoNarrow(
+        fontWeight: FontWeight.bold, fontSize: fontSize, color: Colors.white);
   }
 }

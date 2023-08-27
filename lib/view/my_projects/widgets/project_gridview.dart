@@ -66,7 +66,7 @@ class _ProjectGridViewState extends State<ProjectGridView> {
                 } else {
                   hoverIndex = null;
                 }
-              });
+              },);
             },
             child: Stack(
               alignment: Alignment.center,
@@ -77,6 +77,7 @@ class _ProjectGridViewState extends State<ProjectGridView> {
                   },
                   child: Container(
                     height: size.height,
+                    width: size.width/2,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       image: DecorationImage(

@@ -15,7 +15,7 @@ class AboutProfilePicture extends StatelessWidget {
         child: CircleAvatar(
           radius: 145,
           backgroundColor: AppColors.aqua,
-          backgroundImage: AssetImage(AppAssets.profile2),
+          backgroundImage: AssetImage(AppAssets.profile),
         ),
       ),
     );

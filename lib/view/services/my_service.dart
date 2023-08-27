@@ -24,7 +24,6 @@ class _MyServiceState extends State<MyService> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return ResponsiveClass(
-      bgColor: AppColors.bgColor,
       mobile: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

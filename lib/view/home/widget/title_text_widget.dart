@@ -16,31 +16,31 @@ class TitleTextWidget extends StatelessWidget {
           TypewriterAnimatedText(
             Constants.softwareFlutter,
             textStyle:
-            AppTextStyle.montserratStyle(color: Colors.lightBlueAccent),
+            AppTextStyle.montserratStyle(color: Colors.lightBlueAccent,fontSize: 40),
             speed: const Duration(milliseconds: 120),
           ),
           TypewriterAnimatedText(
             Constants.androidText,
             textStyle:
-            AppTextStyle.montserratStyle(color: Colors.lightBlueAccent),
+            AppTextStyle.montserratStyle(color: Colors.lightBlueAccent,fontSize: 40),
             speed: const Duration(milliseconds: 60),
           ),
           TypewriterAnimatedText(
             Constants.iOSText,
             textStyle:
-            AppTextStyle.montserratStyle(color: Colors.lightBlueAccent),
+            AppTextStyle.montserratStyle(color: Colors.lightBlueAccent,fontSize: 40),
             speed: const Duration(milliseconds: 60),
           ),
           TypewriterAnimatedText(
             Constants.javaText,
             textStyle:
-            AppTextStyle.montserratStyle(color: Colors.lightBlueAccent),
+            AppTextStyle.montserratStyle(color: Colors.lightBlueAccent,fontSize: 40),
             speed: const Duration(milliseconds: 60),
           ),
           TypewriterAnimatedText(
             Constants.softwareFlutter,
             textStyle:
-            AppTextStyle.montserratStyle(color: Colors.lightBlueAccent),
+            AppTextStyle.montserratStyle(color: Colors.lightBlueAccent,fontSize: 40),
             speed: const Duration(milliseconds: 60),
           ),
         ],

@@ -12,7 +12,7 @@ class NameTextWidget extends StatelessWidget {
       duration: const Duration(milliseconds: 1400),
       child: Text(
         Constants.nameText,
-        style: AppTextStyle.headingStyle(),
+        style: AppTextStyle.archivoNarrow(),
       ),
     );
   }

@@ -13,14 +13,13 @@ class AboutMeTextWidget extends StatelessWidget {
       child: RichText(
         text: TextSpan(
           text: "About",
-          style: AppTextStyle.headingStyle(
-            fontSize: 30,
+          style: AppTextStyle.archivoNarrow(
+            fontSize: 35
           ),
           children: [
             TextSpan(
               text: "Me!",
-              style: AppTextStyle.headingStyle(
-                  fontSize: 30, color: AppColors.robinEdgeBlue),
+              style: AppTextStyle.archivoNarrow(fontSize: 35)
             ),
           ],
         ),

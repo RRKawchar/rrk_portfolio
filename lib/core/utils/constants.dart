@@ -20,7 +20,7 @@ class Constants {
 
   /// About Screen All Text
 
-   static const String flutterDevText="Flutter Developers!!";
+   static const String flutterDevText="Flutter Developer!!";
    static const String aboutDescriptionText="With a strong foundation in mobile app development and an affinity for elegant design,"
        "I specialize in crafting applications that captivate users and deliver exceptional functionality."
        "My journey as a Flutter enthusiast began with a genuine passion for innovation and a keen eye for detail. "

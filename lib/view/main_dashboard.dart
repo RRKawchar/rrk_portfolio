@@ -1,11 +1,19 @@
+import 'package:animate_do/animate_do.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:my_portfolio/core/components/app_button.dart';
+import 'package:my_portfolio/core/services/app_service.dart';
 import 'package:my_portfolio/core/utils/app_assets.dart';
 import 'package:my_portfolio/core/utils/app_color.dart';
 import 'package:my_portfolio/core/utils/app_text_style.dart';
+import 'package:my_portfolio/core/utils/app_url.dart';
+import 'package:my_portfolio/core/utils/constants.dart';
 import 'package:my_portfolio/view/about/about_me.dart';
 import 'package:my_portfolio/view/contact/contact_us.dart';
 import 'package:my_portfolio/view/footer_widget.dart';
 import 'package:my_portfolio/view/home/home_screen.dart';
+import 'package:my_portfolio/view/home/widget/social_button_widget.dart';
 import 'package:my_portfolio/view/my_projects/my_project.dart';
 import 'package:my_portfolio/view/services/my_service.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -66,20 +74,59 @@ class _MainDashboardState extends State<MainDashboard> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: AppColors.bgColor,
+      backgroundColor: Colors.black87,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: AppColors.bgColor,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         toolbarHeight: 80,
         titleSpacing: 100,
-        title: LayoutBuilder(builder: (context, constraints) {
+        leading: LayoutBuilder(builder: (context, constraints) {
           if (constraints.maxWidth < 768) {
+            return Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  PopupMenuButton(
+                    icon: Icon(
+                      Icons.menu_open,
+                      color: AppColors.white,
+                      size: 40,
+                    ),
+                    color: AppColors.cardColor,
+                    position: PopupMenuPosition.under,
+                    itemBuilder: (BuildContext context) => menuItems
+                        .asMap()
+                        .entries
+                        .map(
+                          (e) => PopupMenuItem(
+                            textStyle: AppTextStyle.headerTextStyle(),
+                            onTap: () {
+                              scrollTo(index: e.key);
+                            },
+                            child: Text(e.value),
+                          ),
+                        )
+                        .toList(),
+                  ),
+                  // const Spacer(),
+                  // const Padding(
+                  //   padding: EdgeInsets.only(bottom: 10),
+                  //   child: Text("RRK Portfolio"),
+                  // ),
+                ],
+              ),
+            );
+          } else {
             return Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                //const Text("RRK"),
+                //const Spacer(),
                 PopupMenuButton(
                   icon: Icon(
-                    Icons.menu_sharp,
+                    Icons.open_in_new_rounded,
                     color: AppColors.white,
                     size: 32,
                   ),
@@ -99,51 +146,38 @@ class _MainDashboardState extends State<MainDashboard> {
                       )
                       .toList(),
                 ),
-                const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  child: const Text("RRK Portfolio"),
-                ),
-              ],
-            );
-          } else {
-            return Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                const Text("RRK "),
-                const Spacer(),
-                SizedBox(
-                  height: 30,
-                  child: ListView.separated(
-                    itemCount: menuItems.length,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    separatorBuilder: (context, child) => const SizedBox(
-                      width: 8,
-                    ),
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          scrollTo(index: index);
-                        },
-                        borderRadius: BorderRadius.circular(100),
-                        onHover: (value) {
-                          setState(() {
-                            if (value) {
-                              menuIndex = index;
-                            } else {
-                              menuIndex = 0;
-                            }
-                          });
-                        },
-                        child: buildNavBarAnimatedContainer(
-                          index,
-                          menuIndex == index ? true : false,
-                        ),
-                      );
-                    },
-                  ),
-                ),
+                // SizedBox(
+                //   height: 30,
+                //   child: ListView.separated(
+                //     itemCount: menuItems.length,
+                //     shrinkWrap: true,
+                //     scrollDirection: Axis.horizontal,
+                //     separatorBuilder: (context, child) => const SizedBox(
+                //       width: 8,
+                //     ),
+                //     itemBuilder: (context, index) {
+                //       return InkWell(
+                //         onTap: () {
+                //           scrollTo(index: index);
+                //         },
+                //         borderRadius: BorderRadius.circular(100),
+                //         onHover: (value) {
+                //           setState(() {
+                //             if (value) {
+                //               menuIndex = index;
+                //             } else {
+                //               menuIndex = 0;
+                //             }
+                //           });
+                //         },
+                //         child: buildNavBarAnimatedContainer(
+                //           index,
+                //           menuIndex == index ? true : false,
+                //         ),
+                //       );
+                //     },
+                //   ),
+                // ),
                 const SizedBox(
                   height: 30,
                 ),
@@ -152,20 +186,36 @@ class _MainDashboardState extends State<MainDashboard> {
           }
         }),
       ),
-      body: ScrollablePositionedList.builder(
-          scrollOffsetController: ScrollOffsetController(),
-          itemCount: screenList.length,
-          itemScrollController: _itemScrollController,
-          itemBuilder: (context, index) {
-            return screenList[index];
-          }),
+      body: Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/image/bg.png"), fit: BoxFit.cover)),
+        child: ScrollablePositionedList.builder(
+            scrollOffsetController: ScrollOffsetController(),
+            itemCount: screenList.length,
+            itemScrollController: _itemScrollController,
+            itemBuilder: (context, index) {
+              return InkWell(
+                  onTap: () {},
+                  onHover: (value) {
+                    setState(() {
+                      if (value) {
+                        menuIndex = index;
+                      } else {
+                        menuIndex = 0;
+                      }
+                    });
+                  },
+                  child: screenList[index]);
+            }),
+      ),
     );
   }
 
   Widget buildNavBarAnimatedContainer(int index, bool hover) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
-      alignment: Alignment.center,
+      alignment: Alignment.topLeft,
       width: hover ? 80 : 75,
       transform: hover ? onMenuHover : null,
       child: Text(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/utils/constants.dart';
 import 'package:my_portfolio/view/main_dashboard.dart';
+import 'package:my_portfolio/view/sidebar_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MainDashboard()
+      home: MainDashboard()
     );
   }
 }

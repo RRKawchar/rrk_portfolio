@@ -1,18 +1,16 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class ResponsiveClass extends StatelessWidget {
   final Widget mobile;
   final Widget tablet;
   final Widget desktop;
   final double paddingWidth;
-  final Color bgColor;
   const ResponsiveClass({
     super.key,
     required this.mobile,
     required this.tablet,
     required this.desktop,
     required this.paddingWidth,
-    required this.bgColor,
   });
 
   @override
@@ -24,7 +22,6 @@ class ResponsiveClass extends StatelessWidget {
           return Container(
             //height: size.height,
             width: size.width,
-            color: bgColor,
             padding: EdgeInsets.symmetric(
               vertical: size.height * 0.2,
               horizontal: size.width * 0.03,
@@ -35,7 +32,6 @@ class ResponsiveClass extends StatelessWidget {
           return Container(
             //height: size.height,
             width: size.width,
-            color: bgColor,
             padding: EdgeInsets.symmetric(
               vertical: size.height * 0.2,
               horizontal: size.width * 0.03,
@@ -46,7 +42,6 @@ class ResponsiveClass extends StatelessWidget {
           return Container(
             //height: size.height,
             width: size.width,
-            color: bgColor,
             padding: EdgeInsets.symmetric(
               vertical: size.height * 0.2,
               horizontal: paddingWidth,

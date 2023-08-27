@@ -10,30 +10,27 @@ class AboutMeContentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        /// Here About Me Text
-        const AboutMeTextWidget(),
-        const SizedBox(height: 6),
 
         /// Here Flutter Developers !! Text
-        const AboutTitle(),
-        const SizedBox(height: 8),
+        AboutTitle(),
+        SizedBox(height: 8),
 
         /// Here About Description
-        const AboutDescription(),
-        const SizedBox(height: 15),
+        AboutDescription(),
+        SizedBox(height: 15),
 
 
-        FadeInUp(
-          duration: const Duration(milliseconds: 1800),
-          child: AppButton.buildMaterialButton(
-            text: "Read More",
-            onTap: () {},
-          ),
-        )
+        // FadeInUp(
+        //   duration: const Duration(milliseconds: 1800),
+        //   child: AppButton.buildMaterialButton(
+        //     text: "Read More",
+        //     onTap: () {},
+        //   ),
+        // )
       ],
     );
   }

@@ -41,7 +41,6 @@ class _MyProjectsState extends State<MyProjects> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return ResponsiveClass(
-      bgColor: AppColors.bgColor2,
       mobile: const Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -71,7 +70,7 @@ class _MyProjectsState extends State<MyProjects> {
         children: [
           MyProjectText(),
           SizedBox(
-            height: 40,
+            height: 50,
           ),
 
           /// Here GridView.builder for show all project for desktop screen

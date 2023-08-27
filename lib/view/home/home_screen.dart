@@ -18,7 +18,6 @@ class _HomeScreenState extends State<HomeScreen> {
     final Size size = MediaQuery.of(context).size;
 
     return ResponsiveClass(
-      bgColor: AppColors.bgColor,
       mobile: const Column(
         children: [
           ProfileAnimation(),
@@ -32,19 +31,19 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Expanded(child: HomePersonalInfo()),
           SizedBox(width: 16), // Add spacing between widgets
-          ProfileAnimation(),
+          //ProfileAnimation(),
         ],
       ),
-      desktop: const Row(
+      desktop: const Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Expanded(child: HomePersonalInfo()),
+          HomePersonalInfo(),
           SizedBox(width: 16), // Add spacing between widgets
-          Padding(
-            padding: EdgeInsets.only(bottom: 100),
-            child: ProfileAnimation(),
-          ),
+          // Padding(
+          //   padding: EdgeInsets.only(bottom: 100),
+          //   child: ProfileAnimation(),
+          // ),
         ],
       ),
       paddingWidth: size.width * 0.05,
