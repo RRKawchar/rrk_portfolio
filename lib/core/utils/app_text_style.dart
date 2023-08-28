@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTextStyle {
-  static TextStyle headerTextStyle({Color color = Colors.white}) {
+  static TextStyle headerTextStyle({Color color = Colors.white,double fontSize=18}) {
     return GoogleFonts.signikaNegative(
-      fontSize: 18,
+      fontSize: fontSize,
       fontWeight: FontWeight.w600,
       color: color,
     );

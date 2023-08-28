@@ -38,6 +38,7 @@ class _HomePersonalInfoState extends State<HomePersonalInfo> {
        // const SizedBox(height: 15),
 
         /// Here My Name
+        //Text("Riyazur Rohman Kawchar"),
         const NameTextWidget(),
         const SizedBox(height: 20),
 

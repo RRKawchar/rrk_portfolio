@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return ResponsiveClass(
       mobile: const Column(
         children: [
-          ProfileAnimation(),
+          //ProfileAnimation(),
           SizedBox(height: 24,),
           HomePersonalInfo(),
         ],

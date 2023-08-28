@@ -13,12 +13,14 @@ class ResponsiveClass extends StatelessWidget {
     required this.paddingWidth,
   });
 
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth < 768) {
+        if (constraints.maxWidth < 800) {
           return Container(
             //height: size.height,
             width: size.width,
@@ -28,7 +30,7 @@ class ResponsiveClass extends StatelessWidget {
             ),
             child: mobile,
           );
-        } else if (constraints.maxWidth < 1200) {
+        } else if (constraints.maxWidth < 1500 && constraints.maxWidth>=850 ) {
           return Container(
             //height: size.height,
             width: size.width,
@@ -41,10 +43,10 @@ class ResponsiveClass extends StatelessWidget {
         } else {
           return Container(
             //height: size.height,
-            width: size.width,
+           // width: size.width,
             padding: EdgeInsets.symmetric(
-              vertical: size.height * 0.2,
-              horizontal: paddingWidth,
+              vertical: size.height * 0.1,
+              horizontal: size.width * 0.00,
             ),
             child: desktop,
           );
