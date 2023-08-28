@@ -13,14 +13,14 @@ class MyProjectText extends StatelessWidget {
       child: RichText(
         text: TextSpan(
           text: "My",
-          style: AppTextStyle.headingStyle(
+          style: AppTextStyle.archivoNarrow(
             fontSize: 30,
           ),
           children: [
             TextSpan(
               text: " Projects",
-              style: AppTextStyle.headingStyle(
-                  fontSize: 30, color: AppColors.robinEdgeBlue),
+              style: AppTextStyle.archivoNarrow(
+                  fontSize: 30,),
             ),
           ],
         ),

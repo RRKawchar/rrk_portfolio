@@ -34,11 +34,11 @@ class Constants {
    static const String serviceAndroidText="With a strong foundation in Android app development and an affinity for elegant design,"
        "I specialize in crafting applications that captivate users and deliver exceptional functionality.";
 
-   static const String serviceIosText="With a strong foundation in Android app development and an affinity for elegant design,"
+   static const String serviceIosText="With a strong foundation in iOS app development and an affinity for elegant design,"
        "I specialize in crafting applications that captivate users and deliver exceptional functionality.";
    static const String serviceJavaText="With a strong foundation in Desktop application development and an affinity for elegant design,"
        "I specialize in crafting applications that captivate users and deliver exceptional functionality.";
-   static const String serviceUiText="With a strong foundation in Android app development and an affinity for elegant design,"
-       "I specialize in crafting applications that captivate users and deliver exceptional functionality.";
+   static const String serviceUiText="I am able to seamlessly translate Figma designs into fully functional, user-centric mobile and web applications. "
+       "With a strong understanding of both UI/UX principles and development technologies.";
 
 }

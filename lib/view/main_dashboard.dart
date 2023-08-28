@@ -33,7 +33,7 @@ class _MainDashboardState extends State<MainDashboard> {
   final ItemScrollController _itemScrollController = ItemScrollController();
   final onMenuHover = Matrix4.identity()..scale(1.0);
 
-  var isResponsiveSize=850;
+  var isResponsiveSize = 850;
 
   final List<String> menuItems = [
     "Home",
@@ -237,7 +237,7 @@ class _MainDashboardState extends State<MainDashboard> {
                         ),
                       ),
                       SizedBox(
-                        height: size.height/1.1,
+                        height: size.height / 1.1,
                         width: size.width,
                         child: ScrollablePositionedList.builder(
                             scrollOffsetController: ScrollOffsetController(),
@@ -302,9 +302,9 @@ class _MainDashboardState extends State<MainDashboard> {
                         ),
                       ),
                       height: size.height,
-                      width:isResponsiveSize>10? 100:size.width/16,
+                      width: isResponsiveSize > 10 ? 120 : size.width / 16,
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 20,top: 40),
+                        padding: const EdgeInsets.only(left: 20, top: 40),
                         child: ListView.separated(
                           itemCount: menuItems.length,
                           shrinkWrap: true,
@@ -319,13 +319,15 @@ class _MainDashboardState extends State<MainDashboard> {
                               },
                               borderRadius: BorderRadius.circular(100),
                               onHover: (value) {
-                                setState(() {
-                                  if (value) {
-                                    menuIndex = index;
-                                  } else {
-                                    menuIndex = 0;
-                                  }
-                                });
+                                setState(
+                                  () {
+                                    if (value) {
+                                      menuIndex = index;
+                                    } else {
+                                      menuIndex = 0;
+                                    }
+                                  },
+                                );
                               },
                               child: buildNavBarAnimatedContainer(
                                 index,
@@ -336,28 +338,34 @@ class _MainDashboardState extends State<MainDashboard> {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 15,),
+                    const SizedBox(
+                      width: 15,
+                    ),
                     SizedBox(
                       height: size.height,
-                      width: size.width/1.2,
+                      width: size.width / 1.2,
                       child: ScrollablePositionedList.builder(
-                          scrollOffsetController: ScrollOffsetController(),
-                          itemCount: screenList.length,
-                          itemScrollController: _itemScrollController,
-                          itemBuilder: (context, index) {
-                            return InkWell(
-                                onTap: () {},
-                                onHover: (value) {
-                                  setState(() {
-                                    if (value) {
-                                      menuIndex = index;
-                                    } else {
-                                      menuIndex = 0;
-                                    }
-                                  });
+                        scrollOffsetController: ScrollOffsetController(),
+                        itemCount: screenList.length,
+                        itemScrollController: _itemScrollController,
+                        itemBuilder: (context, index) {
+                          return InkWell(
+                            onTap: () {},
+                            onHover: (value) {
+                              setState(
+                                () {
+                                  if (value) {
+                                    menuIndex = index;
+                                  } else {
+                                    menuIndex = 0;
+                                  }
                                 },
-                                child: screenList[index]);
-                          }),
+                              );
+                            },
+                            child: screenList[index],
+                          );
+                        },
+                      ),
                     ),
                   ],
                 );
@@ -390,7 +398,7 @@ class _MainDashboardState extends State<MainDashboard> {
   }
 
   Widget buildNavBarAnimatedContainer(int index, bool hover) {
-    final size=MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
       alignment: Alignment.topLeft,
@@ -399,9 +407,9 @@ class _MainDashboardState extends State<MainDashboard> {
       child: Padding(
         padding: const EdgeInsets.only(top: 30),
         child: Text(
-          menuItems[index],
+          hover? "--${menuItems[index]}":menuItems[index],
           style: AppTextStyle.headerTextStyle(
-            fontSize: 15,
+            fontSize:hover?20: 15,
             color: hover ? AppColors.themeColor : AppColors.white,
           ),
         ),

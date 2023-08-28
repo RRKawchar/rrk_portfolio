@@ -143,66 +143,69 @@ class _MyServiceState extends State<MyService> {
           ),
         ],
       ),
-      desktop: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const MyServiceText(),
-          const SizedBox(
-            height: 60,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ServiceAndroidCard(
-                onHover: (value) {
-                  setState(() {
-                    isAndroidHover = value;
-                  });
-                },
-                isHover: isAndroidHover,
-              ),
-              const SizedBox(
-                width: 18,
-              ),
-
-              /// iOS Service Card
-              ServiceIosCard(
-                onHover: (value) {
-                  setState(() {
-                    isIosHover = value;
-                  });
-                },
-                isHover: isIosHover,
-              ),
-              const SizedBox(
-                width: 18,
-              ),
-
-              /// Java Service card
-              ServiceJavaCard(
-                onHover: (value) {
-                  setState(() {
-                    isJavaHover = value;
-                  });
-                },
-                  isHover: isJavaHover,
-
-              ),
-              const SizedBox(
-                width: 18,
-              ),
-
-              ServiceUiUxCard(
+      desktop: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const MyServiceText(),
+            const SizedBox(
+              height: 60,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ServiceAndroidCard(
                   onHover: (value) {
                     setState(() {
-                      isDesignHover = value;
+                      isAndroidHover = value;
                     });
                   },
-                  isHover: isDesignHover
-              ),
-            ],
-          )
-        ],
+                  isHover: isAndroidHover,
+                ),
+                const SizedBox(
+                  width: 18,
+                ),
+
+                /// iOS Service Card
+                ServiceIosCard(
+                  onHover: (value) {
+                    setState(() {
+                      isIosHover = value;
+                    });
+                  },
+                  isHover: isIosHover,
+                ),
+                const SizedBox(
+                  width: 18,
+                ),
+
+                /// Java Service card
+                ServiceJavaCard(
+                  onHover: (value) {
+                    setState(() {
+                      isJavaHover = value;
+                    });
+                  },
+                    isHover: isJavaHover,
+
+                ),
+                const SizedBox(
+                  width: 18,
+                ),
+
+                ServiceUiUxCard(
+                    onHover: (value) {
+                      setState(() {
+                        isDesignHover = value;
+                      });
+                    },
+                    isHover: isDesignHover
+                ),
+              ],
+            )
+          ],
+        ),
       ),
       paddingWidth: size.width * 0.01,
     );

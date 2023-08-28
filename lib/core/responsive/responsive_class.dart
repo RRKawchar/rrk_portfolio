@@ -30,7 +30,7 @@ class ResponsiveClass extends StatelessWidget {
             ),
             child: mobile,
           );
-        } else if (constraints.maxWidth < 1500 && constraints.maxWidth>=850 ) {
+        } else if (constraints.maxWidth < 1500) {
           return Container(
             //height: size.height,
             width: size.width,

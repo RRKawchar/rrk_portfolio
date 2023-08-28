@@ -9,20 +9,20 @@ class AnimatedContainerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      width: isHover ? 370 : 360,
+      width: isHover ? 350 : 340,
       height: isHover ? 400 : 390,
       alignment: Alignment.center,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
       decoration: BoxDecoration(
-        color: AppColors.cardColor,
+        color: Colors.transparent,
         borderRadius: BorderRadius.circular(30),
         border: isHover ? Border.all(color: AppColors.white, width: 2) : null,
         boxShadow: const [
-          BoxShadow(
-              color: Colors.black54,
-              spreadRadius: 4.0,
-              blurRadius: 4.5,
-              offset: Offset(3.0, 4.5))
+          // BoxShadow(
+          //     color: Colors.black54,
+          //     spreadRadius: 4.0,
+          //     blurRadius: 4.5,
+          //     offset: Offset(3.0, 4.5))
         ],
       ),
       duration: const Duration(

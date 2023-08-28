@@ -29,13 +29,14 @@ class AppTextStyle {
   }
 
   static TextStyle normalStyle(
-      {Color color = Colors.white,
+      {Color color = Colors.grey,
+        FontWeight fontWeight=FontWeight.normal,
       double fontSize = 16.0,
       double height = 1.5}) {
     return TextStyle(
       fontSize: fontSize,
-      fontWeight: FontWeight.w500,
       color: color,
+      fontWeight: fontWeight,
       letterSpacing: 1.7,
       height: height,
     );

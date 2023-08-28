@@ -13,14 +13,13 @@ class MyServiceText extends StatelessWidget {
       child: RichText(
         text: TextSpan(
           text: "My",
-          style: AppTextStyle.headingStyle(
-            fontSize: 30,
-          ),
+          style: AppTextStyle.archivoNarrow(
+            fontSize: 30,),
           children: [
             TextSpan(
-              text: "Services",
-              style: AppTextStyle.headingStyle(
-                  fontSize: 30, color: AppColors.robinEdgeBlue),
+              text: " Services",
+              style: AppTextStyle.archivoNarrow(
+                  fontSize: 30,),
             ),
           ],
         ),

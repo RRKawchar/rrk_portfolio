@@ -18,7 +18,7 @@ class AboutMeTextWidget extends StatelessWidget {
           ),
           children: [
             TextSpan(
-              text: "Me!",
+              text: " Me!",
               style: AppTextStyle.archivoNarrow(fontSize: 35)
             ),
           ],

@@ -5,17 +5,17 @@ import 'package:my_portfolio/core/utils/app_text_style.dart';
 class AppButton{
 
 
-  static MaterialButton buildMaterialButton({required String text,required VoidCallback onTap,}) {
+  static MaterialButton buildMaterialButton({required String text,required VoidCallback onTap,required Color color,Color hoverColor=Colors.grey}) {
     return MaterialButton(
-      color: AppColors.themeColor,
+      color:color ,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 22),
       shape: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
       height: 55,
       minWidth: 150,
-      hoverColor: AppColors.aqua,
+      hoverColor: hoverColor,
       splashColor: AppColors.lowGreen,
       focusElevation: 12,
-      elevation: 6,
+      elevation: 0,
       onPressed:onTap,
       child: Text(
         text,

@@ -99,6 +99,7 @@ class _ContactUsState extends State<ContactUs> {
           height: 20,
         ),
         AppButton.buildMaterialButton(
+          color: AppColors.themeColor,
           text: "Send Message",
           onTap: () {
              sendEmail();
@@ -182,6 +183,7 @@ class _ContactUsState extends State<ContactUs> {
           height: 20,
         ),
         AppButton.buildMaterialButton(
+          color: AppColors.themeColor,
           text: "Send Message",
           onTap: () {
             sendEmail();

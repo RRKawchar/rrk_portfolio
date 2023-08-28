@@ -16,7 +16,7 @@ class DescriptionTextWidget extends StatelessWidget {
         width: size.width / 2.2,
         child: Text(
           Constants.descriptionText,
-          style: AppTextStyle.normalStyle(),
+          style: AppTextStyle.normalStyle(color: Colors.white.withOpacity(0.6)),
         ),
       ),
     );
