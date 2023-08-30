@@ -17,36 +17,43 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
-    return ResponsiveClass(
-      mobile: const Column(
-        children: [
-          //ProfileAnimation(),
-          SizedBox(height: 24,),
-          HomePersonalInfo(),
-        ],
-      ),
-      tablet: const Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Expanded(child: HomePersonalInfo()),
-          SizedBox(width: 16), // Add spacing between widgets
-          //ProfileAnimation(),
-        ],
-      ),
-      desktop: const Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          HomePersonalInfo(),
-          SizedBox(width: 16), // Add spacing between widgets
-          // Padding(
-          //   padding: EdgeInsets.only(bottom: 100),
-          //   child: ProfileAnimation(),
-          // ),
-        ],
-      ),
-      paddingWidth: size.width * 0.05,
+    return LayoutBuilder(
+        builder: (context,constrainsBox){
+         return  ResponsiveClass(
+            mobile:  Column(
+              children: [
+                //ProfileAnimation(),
+                //SizedBox(height: 24,),
+                HomePersonalInfo(constraints: constrainsBox,),
+              ],
+            ),
+            tablet: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                HomePersonalInfo(constraints: constrainsBox,),
+                SizedBox(width: 16), // Add spacing between widgets
+                // Padding(
+                //   padding: EdgeInsets.only(bottom: 100),
+                //   child: ProfileAnimation(),
+                // ),
+              ],
+            ),
+            desktop:  Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                HomePersonalInfo(constraints: constrainsBox,),
+                SizedBox(width: 16), // Add spacing between widgets
+                // Padding(
+                //   padding: EdgeInsets.only(bottom: 100),
+                //   child: ProfileAnimation(),
+                // ),
+              ],
+            ),
+            paddingWidth: size.width * 0.05,
+          );
+        }
     );
   }
 }

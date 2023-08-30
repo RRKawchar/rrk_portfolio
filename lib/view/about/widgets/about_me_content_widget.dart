@@ -6,7 +6,7 @@ import 'package:my_portfolio/view/about/widgets/about_me_text_widget.dart';
 import 'package:my_portfolio/view/about/widgets/about_title.dart';
 
 class AboutMeContentWidget extends StatelessWidget {
-  const AboutMeContentWidget({super.key});
+  const AboutMeContentWidget({super.key,});
 
   @override
   Widget build(BuildContext context) {

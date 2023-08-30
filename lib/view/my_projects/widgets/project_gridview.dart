@@ -37,8 +37,8 @@ class _ProjectGridViewState extends State<ProjectGridView> {
     AppUrl.wallpaperProjectLink,
     AppUrl.eZoneProjectLink,
     AppUrl.countryProjectLink,
-    AppUrl.rajnityLink,
-    AppUrl.newsTubeLink
+    AppUrl.rajnityPlayStorLink,
+    AppUrl.newstubePlayStoreLink
   ];
 
   @override

@@ -8,12 +8,17 @@ import 'package:my_portfolio/core/utils/app_assets.dart';
 import 'package:my_portfolio/core/utils/app_color.dart';
 import 'package:my_portfolio/core/utils/app_text_style.dart';
 import 'package:my_portfolio/core/utils/app_url.dart';
+import 'package:my_portfolio/provider/mf_provider.dart';
+import 'package:my_portfolio/view/my_projects/widgets/country_project.dart';
 import 'package:my_portfolio/view/my_projects/widgets/ezone_project.dart';
 import 'package:my_portfolio/view/my_projects/widgets/mf_food_mart.dart';
 import 'package:my_portfolio/view/my_projects/widgets/my_project_text.dart';
+import 'package:my_portfolio/view/my_projects/widgets/newstube_project.dart';
 import 'package:my_portfolio/view/my_projects/widgets/project_gridview.dart';
 import 'package:my_portfolio/view/my_projects/widgets/project_title.dart';
+import 'package:my_portfolio/view/my_projects/widgets/rajnity_project.dart';
 import 'package:my_portfolio/view/my_projects/widgets/wallpaper_projcet.dart';
+import 'package:provider/provider.dart';
 
 class MyProjects extends StatefulWidget {
   const MyProjects({super.key});
@@ -25,25 +30,9 @@ class MyProjects extends StatefulWidget {
 class _MyProjectsState extends State<MyProjects> {
   final onHoverEffect = Matrix4.identity()..scale(1.0);
 
-  List<String> images = [
-    AppAssets.mf1,
-    AppAssets.walls,
-    AppAssets.eZone,
-    AppAssets.country,
-    AppAssets.rajnity,
-    AppAssets.newstube,
-  ];
-
   var hoverIndex;
 
-  List<String> projects = [
-    AppUrl.mfProjectLink,
-    AppUrl.wallpaperProjectLink,
-    AppUrl.eZoneProjectLink,
-    AppUrl.countryProjectLink,
-    AppUrl.rajnityLink,
-    AppUrl.newsTubeLink
-  ];
+
   bool isMfHover = false;
   bool isWallHover = false;
   bool isEzoneHover = false;
@@ -51,218 +40,252 @@ class _MyProjectsState extends State<MyProjects> {
 
   @override
   Widget build(BuildContext context) {
+    //final projectProvider=Provider.of<MyProjectProvider>(context,listen: false);
     final Size size = MediaQuery.of(context).size;
     return ResponsiveClass(
-      mobile: const Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          MyProjectText(),
-          SizedBox(
-            height: 40,
-          ),
+      mobile:LayoutBuilder(
+        builder: (context,constrainBox){
+          return  Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              MyProjectText(),
+              SizedBox(
+                height: 40,
+              ),
 
-          /// Here GridView.builder for show all project for mobile screen
-          ProjectGridView(crossAxisCount: 1)
-        ],
+              MfFoodMart(constraints: constrainBox,),
+              SizedBox(height: 10),
+              WallpaperProject(constraints: constrainBox,),
+              SizedBox(height: 10),
+              EzoneProject(constraints: constrainBox,),
+              SizedBox(height: 10),
+              CountryProject(constraints: constrainBox,),
+              SizedBox(
+                height: 10,
+              ),
+              NewsTubeProject(constraints: constrainBox,),
+              SizedBox(
+                height: 10,
+              ),
+              RajnityProject(constraints: constrainBox,)
+              //ProjectGridView(crossAxisCount: 1)
+            ],
+          );
+        },
       ),
-      tablet: const Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          MyProjectText(),
-          SizedBox(
-            height: 40,
-          ),
+      tablet:LayoutBuilder(
+        builder: (context,constrainBox){
 
-          /// Here GridView.builder for show all project for tablet screen
-          ProjectGridView(crossAxisCount: 2),
-        ],
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              MyProjectText(),
+              SizedBox(
+                height: 50,
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 20, top: 20),
+                child: Column(
+                  children: [
+                    MfFoodMart(constraints: constrainBox,),
+                    SizedBox(height: 20),
+                    WallpaperProject(constraints: constrainBox,),
+                    SizedBox(height: 20),
+
+                    EzoneProject(constraints: constrainBox,),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    CountryProject(constraints: constrainBox,),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    NewsTubeProject(constraints: constrainBox,),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    RajnityProject(constraints: constrainBox,)
+                  ],
+                ),
+              ),
+              // ListView.builder(
+              //   shrinkWrap: true,
+              //   physics: const NeverScrollableScrollPhysics(),
+              //   itemCount: images.length,
+              //   itemBuilder: (context, index) {
+              //     var image = images[index];
+              //     return Padding(
+              //       padding: const EdgeInsets.only(left: 50, top: 20),
+              //       child: Container(
+              //         height: 220,
+              //         width: size.width,
+              //         decoration: BoxDecoration(border: Border.all()),
+              //         child: Row(
+              //           crossAxisAlignment: CrossAxisAlignment.start,
+              //           children: [
+              //             Container(
+              //               height: 200,
+              //               width: 300,
+              //               decoration: BoxDecoration(
+              //                 image: DecorationImage(
+              //                   opacity: 0.6,
+              //                   image: AssetImage(image),
+              //                   fit: BoxFit.fill,
+              //                 ),
+              //               ),
+              //             )
+              //           ],
+              //         ),
+              //       ),
+              //     );
+              //   },
+              // )
+            ],
+          );
+        },
       ),
-      desktop: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const MyProjectText(),
-          const SizedBox(
-            height: 50,
-          ),
+      desktop: LayoutBuilder(
+        builder: (context,constrainBox){
 
-          /// Here GridView.builder for show all project for desktop screen
-          Padding(
-            padding: const EdgeInsets.only(left: 50, top: 20),
-            child: Column(
+          if(constrainBox.maxWidth>1300){
+            return  Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                MfFoodMart(),
+                MyProjectText(),
+                SizedBox(
+                  height: 50,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 50, top: 20),
+                  child: Column(
+                    children: [
+                      MfFoodMart(constraints: constrainBox,),
+                      SizedBox(height: 20),
+                      WallpaperProject(constraints: constrainBox,),
+                      SizedBox(height: 20),
 
-
-                const SizedBox(height: 20),
-                WallpaperProject(
-                    onHover: (value) {
-                      setState(
-                        () {
-                          isWallHover = value;
-                        },
-                      );
-                    },
-                    isWallHover: isWallHover),
-                const SizedBox(height: 20),
-                EzoneProject(
-                  onHover: (value) {
-                    setState(
-                      () {
-                        isEzoneHover = value;
-                      },
-                    );
-                  },
-                  isEzoneHover: isEzoneHover,
-                ),
-                Container(
-                  height: 220,
-                  width: size.width,
-                  decoration: BoxDecoration(border: Border.all()),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 200,
-                        width: 300,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            opacity: 0.6,
-                            image: AssetImage(AppAssets.eZone),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      )
+                      EzoneProject(constraints: constrainBox,),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      CountryProject(constraints: constrainBox,),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      NewsTubeProject(constraints: constrainBox,),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      RajnityProject(constraints: constrainBox,)
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  height: 220,
-                  width: size.width,
-                  decoration: BoxDecoration(border: Border.all()),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 200,
-                        width: 300,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            opacity: 0.6,
-                            image: AssetImage(AppAssets.country),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  height: 220,
-                  width: size.width,
-                  decoration: BoxDecoration(border: Border.all()),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 200,
-                        width: 300,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            opacity: 0.6,
-                            image: AssetImage(AppAssets.newstube),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  height: 220,
-                  width: size.width,
-                  decoration: BoxDecoration(border: Border.all()),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 200,
-                        width: 300,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            opacity: 0.6,
-                            image: AssetImage(AppAssets.rajnity),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                // ListView.builder(
+                //   shrinkWrap: true,
+                //   physics: const NeverScrollableScrollPhysics(),
+                //   itemCount: images.length,
+                //   itemBuilder: (context, index) {
+                //     var image = images[index];
+                //     return Padding(
+                //       padding: const EdgeInsets.only(left: 50, top: 20),
+                //       child: Container(
+                //         height: 220,
+                //         width: size.width,
+                //         decoration: BoxDecoration(border: Border.all()),
+                //         child: Row(
+                //           crossAxisAlignment: CrossAxisAlignment.start,
+                //           children: [
+                //             Container(
+                //               height: 200,
+                //               width: 300,
+                //               decoration: BoxDecoration(
+                //                 image: DecorationImage(
+                //                   opacity: 0.6,
+                //                   image: AssetImage(image),
+                //                   fit: BoxFit.fill,
+                //                 ),
+                //               ),
+                //             )
+                //           ],
+                //         ),
+                //       ),
+                //     );
+                //   },
+                // )
               ],
-            ),
-          ),
-          // ListView.builder(
-          //   shrinkWrap: true,
-          //   physics: const NeverScrollableScrollPhysics(),
-          //   itemCount: images.length,
-          //   itemBuilder: (context, index) {
-          //     var image = images[index];
-          //     return Padding(
-          //       padding: const EdgeInsets.only(left: 50, top: 20),
-          //       child: Container(
-          //         height: 220,
-          //         width: size.width,
-          //         decoration: BoxDecoration(border: Border.all()),
-          //         child: Row(
-          //           crossAxisAlignment: CrossAxisAlignment.start,
-          //           children: [
-          //             Container(
-          //               height: 200,
-          //               width: 300,
-          //               decoration: BoxDecoration(
-          //                 image: DecorationImage(
-          //                   opacity: 0.6,
-          //                   image: AssetImage(image),
-          //                   fit: BoxFit.fill,
-          //                 ),
-          //               ),
-          //             )
-          //           ],
-          //         ),
-          //       ),
-          //     );
-          //   },
-          // )
-        ],
+            );
+          }else{
+            return  Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                MyProjectText(),
+                SizedBox(
+                  height: 50,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 50, top: 20),
+                  child: Column(
+                    children: [
+                      MfFoodMart(constraints: constrainBox,),
+                      SizedBox(height: 20),
+                      WallpaperProject(constraints: constrainBox,),
+                      SizedBox(height: 20),
+
+                      EzoneProject(constraints: constrainBox,),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      CountryProject(constraints: constrainBox,),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      NewsTubeProject(constraints: constrainBox,),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      RajnityProject(constraints: constrainBox,)
+                    ],
+                  ),
+                ),
+                // ListView.builder(
+                //   shrinkWrap: true,
+                //   physics: const NeverScrollableScrollPhysics(),
+                //   itemCount: images.length,
+                //   itemBuilder: (context, index) {
+                //     var image = images[index];
+                //     return Padding(
+                //       padding: const EdgeInsets.only(left: 50, top: 20),
+                //       child: Container(
+                //         height: 220,
+                //         width: size.width,
+                //         decoration: BoxDecoration(border: Border.all()),
+                //         child: Row(
+                //           crossAxisAlignment: CrossAxisAlignment.start,
+                //           children: [
+                //             Container(
+                //               height: 200,
+                //               width: 300,
+                //               decoration: BoxDecoration(
+                //                 image: DecorationImage(
+                //                   opacity: 0.6,
+                //                   image: AssetImage(image),
+                //                   fit: BoxFit.fill,
+                //                 ),
+                //               ),
+                //             )
+                //           ],
+                //         ),
+                //       ),
+                //     );
+                //   },
+                // )
+              ],
+            );
+          }
+        },
       ),
       paddingWidth: size.width * 0.01,
     );
   }
 
-  Row buildProjectTitle({required String title}) {
-    return Row(
-      children: [
-        const CircleAvatar(
-          radius: 3,
-          backgroundColor: Colors.grey,
-        ),
-        const SizedBox(
-          width: 10,
-        ),
-        Text(
-          title,
-          style: AppTextStyle.normalStyle(fontSize: 16),
-        ),
-      ],
-    );
-  }
 }

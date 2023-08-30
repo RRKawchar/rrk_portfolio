@@ -28,7 +28,7 @@ class _MyServiceState extends State<MyService> {
         mainAxisSize: MainAxisSize.min,
         children: [
           const MyServiceText(),
-          const SizedBox(height: 60),
+          const SizedBox(height: 40),
 
           /// Android Card
           ServiceAndroidCard(
@@ -40,7 +40,7 @@ class _MyServiceState extends State<MyService> {
             isHover: isAndroidHover,
           ),
 
-          const SizedBox(height: 24),
+          const SizedBox(height: 5),
 
           /// Ios Card
           ServiceIosCard(
@@ -52,7 +52,7 @@ class _MyServiceState extends State<MyService> {
             isHover: isIosHover,
           ),
 
-          const SizedBox(height: 24),
+          const SizedBox(height: 10),
 
           /// Java Card
           ServiceJavaCard(
@@ -64,7 +64,7 @@ class _MyServiceState extends State<MyService> {
             isHover: isJavaHover,
           ),
           const SizedBox(
-            height: 24,
+            height: 10,
           ),
 
           /// Ux/Ui Designing
@@ -152,58 +152,134 @@ class _MyServiceState extends State<MyService> {
             const SizedBox(
               height: 60,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ServiceAndroidCard(
-                  onHover: (value) {
-                    setState(() {
-                      isAndroidHover = value;
-                    });
-                  },
-                  isHover: isAndroidHover,
-                ),
-                const SizedBox(
-                  width: 18,
-                ),
+           LayoutBuilder(
+          builder: (context, constraints) {
+            if(constraints.maxWidth<1400){
+              return  Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ServiceAndroidCard(
+                        onHover: (value) {
+                          setState(() {
+                            isAndroidHover = value;
+                          });
+                        },
+                        isHover: isAndroidHover,
+                      ),
+                      const SizedBox(
+                        width: 18,
+                      ),
+                      /// iOS Service Card
+                      ServiceIosCard(
+                        onHover: (value) {
+                          setState(() {
+                            isIosHover = value;
+                          });
+                        },
+                        isHover: isIosHover,
+                      ),
+                    ],
+                  ),
 
-                /// iOS Service Card
-                ServiceIosCard(
-                  onHover: (value) {
-                    setState(() {
-                      isIosHover = value;
-                    });
-                  },
-                  isHover: isIosHover,
-                ),
-                const SizedBox(
-                  width: 18,
-                ),
 
-                /// Java Service card
-                ServiceJavaCard(
-                  onHover: (value) {
-                    setState(() {
-                      isJavaHover = value;
-                    });
-                  },
-                    isHover: isJavaHover,
 
-                ),
-                const SizedBox(
-                  width: 18,
-                ),
+                  const SizedBox(
+                    height: 18,
+                  ),
 
-                ServiceUiUxCard(
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ServiceJavaCard(
+                        onHover: (value) {
+                          setState(() {
+                            isJavaHover = value;
+                          });
+                        },
+                        isHover: isJavaHover,
+
+                      ),
+                      const SizedBox(
+                        width: 18,
+                      ),
+
+                      ServiceUiUxCard(
+                          onHover: (value) {
+                            setState(() {
+                              isDesignHover = value;
+                            });
+                          },
+                          isHover: isDesignHover
+                      ),
+                    ],
+                  )
+                  /// Java Service card
+
+                ],
+              );
+            }else{
+              return  Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ServiceAndroidCard(
                     onHover: (value) {
                       setState(() {
-                        isDesignHover = value;
+                        isAndroidHover = value;
                       });
                     },
-                    isHover: isDesignHover
-                ),
-              ],
-            )
+                    isHover: isAndroidHover,
+                  ),
+                  const SizedBox(
+                    width: 18,
+                  ),
+
+                  /// iOS Service Card
+                  ServiceIosCard(
+                    onHover: (value) {
+                      setState(() {
+                        isIosHover = value;
+                      });
+                    },
+                    isHover: isIosHover,
+                  ),
+                  const SizedBox(
+                    width: 18,
+                  ),
+
+                  /// Java Service card
+                  ServiceJavaCard(
+                    onHover: (value) {
+                      setState(() {
+                        isJavaHover = value;
+                      });
+                    },
+                    isHover: isJavaHover,
+
+                  ),
+                  const SizedBox(
+                    width: 18,
+                  ),
+
+                  ServiceUiUxCard(
+                      onHover: (value) {
+                        setState(() {
+                          isDesignHover = value;
+                        });
+                      },
+                      isHover: isDesignHover
+                  ),
+                ],
+              );
+            }
+          }
+           )
+
           ],
         ),
       ),

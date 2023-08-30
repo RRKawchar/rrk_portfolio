@@ -25,17 +25,17 @@ class ResponsiveClass extends StatelessWidget {
             //height: size.height,
             width: size.width,
             padding: EdgeInsets.symmetric(
-              vertical: size.height * 0.2,
+              vertical: size.height * 0.02,
               horizontal: size.width * 0.03,
             ),
             child: mobile,
           );
-        } else if (constraints.maxWidth < 1500) {
+        } else if (constraints.maxWidth < 1300) {
           return Container(
             //height: size.height,
             width: size.width,
             padding: EdgeInsets.symmetric(
-              vertical: size.height * 0.2,
+              vertical: size.height * 0.03,
               horizontal: size.width * 0.03,
             ),
             child: tablet,
@@ -45,7 +45,7 @@ class ResponsiveClass extends StatelessWidget {
             //height: size.height,
            // width: size.width,
             padding: EdgeInsets.symmetric(
-              vertical: size.height * 0.1,
+              vertical: size.height * 0.04,
               horizontal: size.width * 0.00,
             ),
             child: desktop,

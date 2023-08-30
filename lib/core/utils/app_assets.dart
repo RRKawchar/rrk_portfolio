@@ -13,6 +13,7 @@ class AppAssets{
   static String designIcon="assets/image/design.png";
   static String toolsIcon="assets/image/tools.png";
   static String shareIcon="assets/image/share.png";
+  static String playStoreIcon="assets/image/play_store.png";
 
   ///Project Image
   static String mf1="assets/projects/mf.png";

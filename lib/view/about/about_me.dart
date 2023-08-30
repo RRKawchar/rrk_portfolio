@@ -21,23 +21,58 @@ class _AboutMeState extends State<AboutMe> {
       mobile: const Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+
           /// Here Profile Picture
           AboutProfilePicture(),
-          SizedBox(height: 35),
 
+          SizedBox(height: 35),
+          const AboutMeTextWidget(),
+          SizedBox(height: 10),
           /// About Contents, Like About me , title , description
           AboutMeContentWidget(),
         ],
       ),
-      tablet: const Row(
+      tablet: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          /// Here Profile Picture
-          AboutProfilePicture(),
-          SizedBox(width: 25),
-
-          /// About Contents, Like About me , title , description
-          Expanded(child: AboutMeContentWidget()),
+          /// Here About Me Text
+          const AboutMeTextWidget(),
+          const SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            onTap: () {},
+            onHover: (value) {
+              setState(() {
+                isHover = value;
+              },);
+            },
+            child: Container(
+              height: size.height,
+              width: size.width / 1.6,
+              decoration: BoxDecoration(
+                  color: isHover
+                      ? Colors.grey.withOpacity(0.2)
+                      : Colors.transparent,
+                  border: Border.all()),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: size.height / 2.7,
+                    width: size.width / 2,
+                    child: const AboutMeContentWidget(),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  const AboutProfilePicture(),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
       desktop: Column(

@@ -11,20 +11,14 @@ import 'package:my_portfolio/view/home/widget/social_button_widget.dart';
 import 'package:my_portfolio/view/home/widget/title_text_widget.dart';
 
 class HomePersonalInfo extends StatefulWidget {
-  const HomePersonalInfo({super.key});
+  final BoxConstraints constraints;
+  const HomePersonalInfo({super.key, required this.constraints});
 
   @override
   State<HomePersonalInfo> createState() => _HomePersonalInfoState();
 }
 
 class _HomePersonalInfoState extends State<HomePersonalInfo> {
-  final List<String> socialButtons = [
-    AppAssets.facebook,
-    AppAssets.twitter,
-    AppAssets.linkedIn,
-    AppAssets.instagram,
-    AppAssets.github,
-  ];
 
   var socialBI;
 
@@ -41,15 +35,15 @@ class _HomePersonalInfoState extends State<HomePersonalInfo> {
 
         /// Here My Name
         //Text("Riyazur Rohman Kawchar"),
-        const NameTextWidget(),
+         NameTextWidget(constraints: widget.constraints,),
         const SizedBox(height: 20),
 
         /// Here I'm Software Engineer(Flutter), Android App Developer , iOS Developer, Java Application developer text
-        const TitleTextWidget(),
+         TitleTextWidget(constraints: widget.constraints,),
         const SizedBox(height: 20),
 
         /// Here About Me
-        const DescriptionTextWidget(),
+         DescriptionTextWidget(constraints: widget.constraints,),
         const SizedBox(height: 20),
         ///  Here Facebook, twitter, LinkedIn, Instagram, Github Button
         const SocialButtonWidget(),

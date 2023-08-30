@@ -43,7 +43,7 @@ class _SocialButtonWidgetState extends State<SocialButtonWidget> {
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           separatorBuilder: (context, child) => const SizedBox(
-            width: 8,
+            width: 1,
           ),
           itemBuilder: (context, index) {
             return CircleAvatar(

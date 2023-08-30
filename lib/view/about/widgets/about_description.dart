@@ -8,11 +8,12 @@ class AboutDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size size=MediaQuery.of(context).size;
     return FadeInLeft(
       duration: const Duration(milliseconds: 1600),
       child: Text(
         Constants.aboutDescriptionText,
-        style: AppTextStyle.normalStyle(),
+        style: AppTextStyle.normalStyle(fontSize:size.width<100? 12:16 ),
       ),
     );
   }

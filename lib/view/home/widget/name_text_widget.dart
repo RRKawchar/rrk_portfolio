@@ -4,7 +4,8 @@ import 'package:my_portfolio/core/utils/app_text_style.dart';
 import 'package:my_portfolio/core/utils/constants.dart';
 
 class NameTextWidget extends StatelessWidget {
-  const NameTextWidget({super.key});
+  final BoxConstraints constraints;
+  const NameTextWidget({super.key, required this.constraints});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,7 @@ class NameTextWidget extends StatelessWidget {
       duration: const Duration(milliseconds: 1400),
       child: Text(
         Constants.nameText,
-        style: AppTextStyle.archivoNarrow(fontSize: 60),
+        style: AppTextStyle.archivoNarrow(fontSize:constraints.maxWidth<=600?35:constraints.maxWidth<=700?50:60),
       ),
     );
   }

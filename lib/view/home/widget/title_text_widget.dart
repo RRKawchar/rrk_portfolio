@@ -5,7 +5,8 @@ import 'package:my_portfolio/core/utils/app_text_style.dart';
 import 'package:my_portfolio/core/utils/constants.dart';
 
 class TitleTextWidget extends StatelessWidget {
-  const TitleTextWidget({super.key});
+  final BoxConstraints constraints;
+  const TitleTextWidget({super.key, required this.constraints});
 
   @override
   Widget build(BuildContext context) {
@@ -16,31 +17,31 @@ class TitleTextWidget extends StatelessWidget {
           TypewriterAnimatedText(
             Constants.softwareFlutter,
             textStyle:
-            AppTextStyle.montserratStyle(color: Colors.lightBlueAccent,fontSize: 40),
+            AppTextStyle.montserratStyle(color: Colors.lightBlueAccent, fontSize:constraints.maxWidth<=600?20:constraints.maxWidth<=700?30:60),
             speed: const Duration(milliseconds: 120),
           ),
           TypewriterAnimatedText(
             Constants.androidText,
             textStyle:
-            AppTextStyle.montserratStyle(color: Colors.lightBlueAccent,fontSize: 40),
+            AppTextStyle.montserratStyle(color: Colors.lightBlueAccent,fontSize:constraints.maxWidth<=600?20:constraints.maxWidth<=800?30:40),
             speed: const Duration(milliseconds: 60),
           ),
           TypewriterAnimatedText(
             Constants.iOSText,
             textStyle:
-            AppTextStyle.montserratStyle(color: Colors.lightBlueAccent,fontSize: 40),
+            AppTextStyle.montserratStyle(color: Colors.lightBlueAccent,fontSize: constraints.maxWidth<=600?20:constraints.maxWidth<=800?30:40),
             speed: const Duration(milliseconds: 60),
           ),
           TypewriterAnimatedText(
             Constants.javaText,
             textStyle:
-            AppTextStyle.montserratStyle(color: Colors.lightBlueAccent,fontSize: 40),
+            AppTextStyle.montserratStyle(color: Colors.lightBlueAccent,fontSize: constraints.maxWidth<=600?20:constraints.maxWidth<=800?30:40),
             speed: const Duration(milliseconds: 60),
           ),
           TypewriterAnimatedText(
             Constants.softwareFlutter,
             textStyle:
-            AppTextStyle.montserratStyle(color: Colors.lightBlueAccent,fontSize: 40),
+            AppTextStyle.montserratStyle(color: Colors.lightBlueAccent,fontSize: constraints.maxWidth<=600?20:constraints.maxWidth<=800?30:40),
             speed: const Duration(milliseconds: 60),
           ),
         ],

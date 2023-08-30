@@ -15,10 +15,11 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      borderRadius: BorderRadius.circular(12),
-      color: Colors.transparent,
-      elevation: 8,
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: Colors.transparent.withOpacity(1)
+      ),
       child: TextField(
         maxLines:maxLines,
         controller: controller,

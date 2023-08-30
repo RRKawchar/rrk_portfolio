@@ -206,10 +206,11 @@ class _MainDashboardState extends State<MainDashboard> {
             LayoutBuilder(builder: (context, constraints) {
               if (constraints.maxWidth < isResponsiveSize) {
                 return Padding(
-                  padding: const EdgeInsets.only(left: 10),
+                  padding: const EdgeInsets.only(left: 10,right: 2),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      SizedBox(height: 25,),
                       SizedBox(
                         height: 50,
                         width: 50,
@@ -237,7 +238,7 @@ class _MainDashboardState extends State<MainDashboard> {
                         ),
                       ),
                       SizedBox(
-                        height: size.height / 1.1,
+                        height: size.height / 1.2,
                         width: size.width,
                         child: ScrollablePositionedList.builder(
                             scrollOffsetController: ScrollOffsetController(),
