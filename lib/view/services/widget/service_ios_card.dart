@@ -6,12 +6,13 @@ import 'package:my_portfolio/view/services/widget/animated_container_widget.dart
 import '../../../core/utils/app_assets.dart';
 
 class ServiceIosCard extends StatelessWidget {
+  final BoxConstraints constraints;
   final void Function(bool)? onHover;
   final bool isHover;
   const ServiceIosCard({
     super.key,
     required this.onHover,
-    required this.isHover,
+    required this.isHover, required this.constraints,
   });
 
   @override
@@ -20,6 +21,7 @@ class ServiceIosCard extends StatelessWidget {
         onTap: () {},
         onHover: onHover,
         child: AnimatedContainerWidget(
+          constraints: constraints,
           isHover: isHover,
           child: Column(
             children: [

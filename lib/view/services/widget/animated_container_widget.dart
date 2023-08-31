@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/utils/app_color.dart';
 
 class AnimatedContainerWidget extends StatelessWidget {
+  final BoxConstraints constraints;
   final bool isHover;
   final Widget child;
-  const AnimatedContainerWidget({super.key, required this.isHover,required this.child});
+  const AnimatedContainerWidget({super.key, required this.isHover,required this.child, required this.constraints});
 
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      width: isHover ? 350 : 340,
-      height: isHover ? 400 : 390,
+      width: isHover ? constraints.maxWidth<1420? 340: 350 :constraints.maxWidth<1420? 330:340,
+      height: isHover ?constraints.maxWidth<1420? 420: 400 : constraints.maxWidth<1420? 410:390,
       alignment: Alignment.center,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
       decoration: BoxDecoration(

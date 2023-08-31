@@ -33,8 +33,6 @@ class _MainDashboardState extends State<MainDashboard> {
   final ItemScrollController _itemScrollController = ItemScrollController();
   final onMenuHover = Matrix4.identity()..scale(1.0);
 
-  var isResponsiveSize = 850;
-
   final List<String> menuItems = [
     "Home",
     "About",
@@ -82,116 +80,6 @@ class _MainDashboardState extends State<MainDashboard> {
     return Scaffold(
       backgroundColor: Colors.black87,
       extendBodyBehindAppBar: true,
-      // appBar: AppBar(
-      //   backgroundColor: Colors.transparent,
-      //   elevation: 0,
-      //   toolbarHeight: 80,
-      //   titleSpacing: 100,
-      //   title: LayoutBuilder(builder: (context, constraints) {
-      //     if (constraints.maxWidth < 768) {
-      //       return Padding(
-      //         padding: const EdgeInsets.only(left: 10),
-      //         child: Row(
-      //           crossAxisAlignment: CrossAxisAlignment.end,
-      //           children: [
-      //             PopupMenuButton(
-      //               icon: Icon(
-      //                 Icons.menu_open,
-      //                 color: AppColors.white,
-      //                 size: 40,
-      //               ),
-      //               color: AppColors.cardColor,
-      //               position: PopupMenuPosition.under,
-      //               itemBuilder: (BuildContext context) => menuItems
-      //                   .asMap()
-      //                   .entries
-      //                   .map(
-      //                     (e) => PopupMenuItem(
-      //                       textStyle: AppTextStyle.headerTextStyle(),
-      //                       onTap: () {
-      //                         scrollTo(index: e.key);
-      //                       },
-      //                       child: Text(e.value),
-      //                     ),
-      //                   )
-      //                   .toList(),
-      //             ),
-      //             // const Spacer(),
-      //             // const Padding(
-      //             //   padding: EdgeInsets.only(bottom: 10),
-      //             //   child: Text("RRK Portfolio"),
-      //             // ),
-      //           ],
-      //         ),
-      //       );
-      //     } else {
-      //       return Row(
-      //         crossAxisAlignment: CrossAxisAlignment.start,
-      //         children: [
-      //           const Text("RRK"),
-      //           //const Spacer(),
-      //           // PopupMenuButton(
-      //           //   icon: Icon(
-      //           //     Icons.open_in_new_rounded,
-      //           //     color: AppColors.white,
-      //           //     size: 32,
-      //           //   ),
-      //           //   color: AppColors.cardColor,
-      //           //   position: PopupMenuPosition.under,
-      //           //   itemBuilder: (BuildContext context) => menuItems
-      //           //       .asMap()
-      //           //       .entries
-      //           //       .map(
-      //           //         (e) => PopupMenuItem(
-      //           //           textStyle: AppTextStyle.headerTextStyle(),
-      //           //           onTap: () {
-      //           //             scrollTo(index: e.key);
-      //           //           },
-      //           //           child: Text(e.value),
-      //           //         ),
-      //           //       )
-      //           //       .toList(),
-      //           // ),
-      //           SizedBox(
-      //             height: 30,
-      //             child: ListView.separated(
-      //               itemCount: menuItems.length,
-      //               shrinkWrap: true,
-      //               scrollDirection: Axis.horizontal,
-      //               separatorBuilder: (context, child) => const SizedBox(
-      //                 width: 8,
-      //               ),
-      //               itemBuilder: (context, index) {
-      //                 return InkWell(
-      //                   onTap: () {
-      //                     scrollTo(index: index);
-      //                   },
-      //                   borderRadius: BorderRadius.circular(100),
-      //                   onHover: (value) {
-      //                     setState(() {
-      //                       if (value) {
-      //                         menuIndex = index;
-      //                       } else {
-      //                         menuIndex = 0;
-      //                       }
-      //                     });
-      //                   },
-      //                   child: buildNavBarAnimatedContainer(
-      //                     index,
-      //                     menuIndex == index ? true : false,
-      //                   ),
-      //                 );
-      //               },
-      //             ),
-      //           ),
-      //           const SizedBox(
-      //             height: 30,
-      //           ),
-      //         ],
-      //       );
-      //     }
-      //   }),
-      // ),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -204,13 +92,15 @@ class _MainDashboardState extends State<MainDashboard> {
         child: Column(
           children: [
             LayoutBuilder(builder: (context, constraints) {
-              if (constraints.maxWidth < isResponsiveSize) {
+              if (constraints.maxWidth < 800) {
                 return Padding(
-                  padding: const EdgeInsets.only(left: 10,right: 2),
+                  padding: const EdgeInsets.only(left: 10, right: 2),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 25,),
+                      const SizedBox(
+                        height: 25,
+                      ),
                       SizedBox(
                         height: 50,
                         width: 50,
@@ -241,23 +131,25 @@ class _MainDashboardState extends State<MainDashboard> {
                         height: size.height / 1.2,
                         width: size.width,
                         child: ScrollablePositionedList.builder(
-                            scrollOffsetController: ScrollOffsetController(),
-                            itemCount: screenList.length,
-                            itemScrollController: _itemScrollController,
-                            itemBuilder: (context, index) {
-                              return InkWell(
-                                  onTap: () {},
-                                  onHover: (value) {
-                                    setState(() {
-                                      if (value) {
-                                        menuIndex = index;
-                                      } else {
-                                        menuIndex = 0;
-                                      }
-                                    });
-                                  },
-                                  child: screenList[index]);
-                            }),
+                          scrollOffsetController: ScrollOffsetController(),
+                          itemCount: screenList.length,
+                          itemScrollController: _itemScrollController,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () {},
+                              onHover: (value) {
+                                setState(() {
+                                  if (value) {
+                                    menuIndex = index;
+                                  } else {
+                                    menuIndex = 0;
+                                  }
+                                });
+                              },
+                              child: screenList[index],
+                            );
+                          },
+                        ),
                       ),
                       // const Spacer(),
                       // const Padding(
@@ -303,7 +195,7 @@ class _MainDashboardState extends State<MainDashboard> {
                         ),
                       ),
                       height: size.height,
-                      width: isResponsiveSize > 10 ? 120 : size.width / 16,
+                      width: size.width / 16,
                       child: Padding(
                         padding: const EdgeInsets.only(left: 20, top: 40),
                         child: ListView.separated(
@@ -408,9 +300,9 @@ class _MainDashboardState extends State<MainDashboard> {
       child: Padding(
         padding: const EdgeInsets.only(top: 30),
         child: Text(
-          hover? "--${menuItems[index]}":menuItems[index],
+          hover ? "--${menuItems[index]}" : menuItems[index],
           style: AppTextStyle.headerTextStyle(
-            fontSize:hover?20: 15,
+            fontSize: hover ? 20 : 15,
             color: hover ? AppColors.themeColor : AppColors.white,
           ),
         ),

@@ -32,7 +32,7 @@ class ResponsiveClass extends StatelessWidget {
           );
         } else if (constraints.maxWidth < 1300) {
           return Container(
-            //height: size.height,
+
             width: size.width,
             padding: EdgeInsets.symmetric(
               vertical: size.height * 0.03,

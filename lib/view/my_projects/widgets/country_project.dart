@@ -5,8 +5,7 @@ import 'package:my_portfolio/core/utils/app_assets.dart';
 import 'package:my_portfolio/core/utils/app_color.dart';
 import 'package:my_portfolio/core/utils/app_text_style.dart';
 import 'package:my_portfolio/core/utils/app_url.dart';
-import 'package:my_portfolio/provider/country_provider.dart';
-import 'package:my_portfolio/provider/mf_provider.dart';
+import 'package:my_portfolio/provider/project_provider/country_provider.dart';
 import 'package:my_portfolio/view/my_projects/widgets/project_title.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +23,7 @@ class CountryProject extends StatelessWidget {
         onTap: () {},
         onHover: value.setHover,
         child: Container(
-          height: constraints.maxWidth < 700? 450: constraints.maxWidth > 700 && constraints.maxWidth < 1100? 450: 220,
+          height: constraints.maxWidth < 700? 500: constraints.maxWidth > 700 && constraints.maxWidth < 1100? 450: 220,
           width: size.width,
           decoration: BoxDecoration(
             color: value.isHover

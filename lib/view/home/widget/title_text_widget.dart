@@ -17,7 +17,7 @@ class TitleTextWidget extends StatelessWidget {
           TypewriterAnimatedText(
             Constants.softwareFlutter,
             textStyle:
-            AppTextStyle.montserratStyle(color: Colors.lightBlueAccent, fontSize:constraints.maxWidth<=600?20:constraints.maxWidth<=700?30:60),
+            AppTextStyle.montserratStyle(color: Colors.lightBlueAccent, fontSize:constraints.maxWidth<=600?20:constraints.maxWidth<=800?30:40),
             speed: const Duration(milliseconds: 120),
           ),
           TypewriterAnimatedText(

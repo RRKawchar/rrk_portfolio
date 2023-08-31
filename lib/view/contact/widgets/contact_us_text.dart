@@ -14,13 +14,13 @@ class ContactUsText extends StatelessWidget {
         text: TextSpan(
             text: "Contact",
             style: AppTextStyle.normalStyle(
-              fontSize: 60,
+              fontSize: 50,color: Colors.white
             ),
             children: [
               TextSpan(
                 text: " Me!!",
                 style: AppTextStyle.normalStyle(
-                    fontSize: 60, color: AppColors.robinEdgeBlue),
+                    fontSize: 50, color: Colors.white),
               ),
             ]),
       ),

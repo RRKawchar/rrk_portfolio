@@ -6,12 +6,13 @@ import 'package:my_portfolio/view/services/widget/animated_container_widget.dart
 import '../../../core/utils/app_assets.dart';
 
 class ServiceAndroidCard extends StatelessWidget {
+  final BoxConstraints constraints;
   final void Function(bool)? onHover;
   final bool isHover;
   const ServiceAndroidCard({
     super.key,
     required this.onHover,
-    required this.isHover,
+    required this.isHover, required this.constraints,
   });
 
   @override
@@ -20,20 +21,21 @@ class ServiceAndroidCard extends StatelessWidget {
       onTap: () {},
       onHover: onHover,
       child: AnimatedContainerWidget(
+        constraints: constraints,
         isHover: isHover,
         child: Column(
           children: [
             Image.asset(
               AppAssets.androidIcon,
-              height: 50,
-              width: 50,
+              height:constraints.maxWidth<1500 && constraints.maxWidth>1200?45: 50,
+              width:constraints.maxWidth<1500 && constraints.maxWidth>1200?45: 50,
             ),
             const SizedBox(
               height: 30,
             ),
             Text(
               "Android Development",
-              style: AppTextStyle.montserratStyle(color: Colors.white),
+              style: AppTextStyle.montserratStyle(color: Colors.white,fontSize:constraints.maxWidth<1420 && constraints.maxWidth>1200?20:24 ),
             ),
             const SizedBox(
               height: 20,

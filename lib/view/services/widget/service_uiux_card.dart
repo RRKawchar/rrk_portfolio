@@ -5,9 +5,10 @@ import 'package:my_portfolio/core/utils/constants.dart';
 import 'package:my_portfolio/view/services/widget/animated_container_widget.dart';
 
 class ServiceUiUxCard extends StatelessWidget {
+  final BoxConstraints constraints;
   final void Function(bool)? onHover;
   final bool isHover;
-  const ServiceUiUxCard({super.key, this.onHover, required this.isHover,});
+  const ServiceUiUxCard({super.key, this.onHover, required this.isHover, required this.constraints,});
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +16,7 @@ class ServiceUiUxCard extends StatelessWidget {
       onTap: () {},
       onHover: onHover,
       child: AnimatedContainerWidget(
+        constraints: constraints,
         isHover: isHover,
         child: Column(
           children: [

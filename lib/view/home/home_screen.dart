@@ -19,11 +19,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return LayoutBuilder(
         builder: (context,constrainsBox){
-         return  ResponsiveClass(
-            mobile:  Column(
+         return ResponsiveClass(
+            mobile: Column(
               children: [
-                //ProfileAnimation(),
-                //SizedBox(height: 24,),
                 HomePersonalInfo(constraints: constrainsBox,),
               ],
             ),
@@ -32,11 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 HomePersonalInfo(constraints: constrainsBox,),
-                SizedBox(width: 16), // Add spacing between widgets
-                // Padding(
-                //   padding: EdgeInsets.only(bottom: 100),
-                //   child: ProfileAnimation(),
-                // ),
+                const SizedBox(width: 16),
               ],
             ),
             desktop:  Column(
@@ -44,11 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 HomePersonalInfo(constraints: constrainsBox,),
-                SizedBox(width: 16), // Add spacing between widgets
-                // Padding(
-                //   padding: EdgeInsets.only(bottom: 100),
-                //   child: ProfileAnimation(),
-                // ),
+                const SizedBox(width: 16),
+
               ],
             ),
             paddingWidth: size.width * 0.05,

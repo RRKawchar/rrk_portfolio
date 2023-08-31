@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/utils/constants.dart';
-import 'package:my_portfolio/provider/country_provider.dart';
-import 'package:my_portfolio/provider/ezone_provider.dart';
-import 'package:my_portfolio/provider/mf_provider.dart';
-import 'package:my_portfolio/provider/news_tube_provider.dart';
-import 'package:my_portfolio/provider/rajnity_provider.dart';
-import 'package:my_portfolio/provider/wallpaper_provider.dart';
+import 'package:my_portfolio/provider/about_provider.dart';
+import 'package:my_portfolio/provider/home_provider.dart';
+import 'package:my_portfolio/provider/project_provider/country_provider.dart';
+import 'package:my_portfolio/provider/project_provider/mf_provider.dart';
+import 'package:my_portfolio/provider/project_provider/news_tube_provider.dart';
+import 'package:my_portfolio/provider/project_provider/rajnity_provider.dart';
+import 'package:my_portfolio/provider/project_provider/wallpaper_provider.dart';
 import 'package:my_portfolio/view/main_dashboard.dart';
-import 'package:my_portfolio/view/my_projects/widgets/newstube_project.dart';
-import 'package:my_portfolio/view/sidebar_screen.dart';
 import 'package:provider/provider.dart';
+
+import 'provider/project_provider/ezone_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,6 +41,12 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (context){
             return RajnityProvider();
           }),
+          ChangeNotifierProvider(create: (context){
+            return HomeProvider();
+          }),
+          ChangeNotifierProvider(create: (context){
+            return AboutProvider();
+          }),
 
         ],
       child: MaterialApp(
@@ -48,7 +55,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: MainDashboard()
+          home: const MainDashboard()
       ),
     );
 

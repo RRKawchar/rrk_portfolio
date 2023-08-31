@@ -6,7 +6,7 @@ import 'package:my_portfolio/core/utils/app_assets.dart';
 import 'package:my_portfolio/core/utils/app_color.dart';
 import 'package:my_portfolio/core/utils/app_text_style.dart';
 import 'package:my_portfolio/core/utils/app_url.dart';
-import 'package:my_portfolio/provider/ezone_provider.dart';
+import 'package:my_portfolio/provider/project_provider/ezone_provider.dart';
 import 'package:my_portfolio/view/my_projects/widgets/project_title.dart';
 import 'package:provider/provider.dart';
 

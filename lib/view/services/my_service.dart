@@ -24,124 +24,140 @@ class _MyServiceState extends State<MyService> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return ResponsiveClass(
-      mobile: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const MyServiceText(),
-          const SizedBox(height: 40),
-
-          /// Android Card
-          ServiceAndroidCard(
-            onHover: (value) {
-              setState(() {
-                isAndroidHover = value;
-              });
-            },
-            isHover: isAndroidHover,
-          ),
-
-          const SizedBox(height: 5),
-
-          /// Ios Card
-          ServiceIosCard(
-            onHover: (value) {
-              setState(() {
-                isIosHover = value;
-              });
-            },
-            isHover: isIosHover,
-          ),
-
-          const SizedBox(height: 10),
-
-          /// Java Card
-          ServiceJavaCard(
-            onHover: (value) {
-              setState(() {
-                isJavaHover = value;
-              });
-            },
-            isHover: isJavaHover,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-
-          /// Ux/Ui Designing
-          ServiceUiUxCard(
-            onHover: (value) {
-              setState(() {
-                isDesignHover = value;
-              });
-            },
-            isHover: isDesignHover,
-          ),
-        ],
-      ),
-      tablet: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const MyServiceText(),
-          const SizedBox(
-            height: 60,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+      mobile: LayoutBuilder(
+        builder: (context,constrains){
+          return Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
+              const MyServiceText(),
+              const SizedBox(height: 40),
+
               /// Android Card
               ServiceAndroidCard(
-                  onHover: (value) {
-                    setState(() {
-                      isAndroidHover = value;
-                    });
-                  },
-                  isHover: isAndroidHover),
-              const SizedBox(
-                width: 18,
+                onHover: (value) {
+                  setState(() {
+                    isAndroidHover = value;
+                  });
+                },
+                constraints: constrains,
+                isHover: isAndroidHover,
               ),
 
-              /// iOS Card
+              const SizedBox(height: 5),
+
+              /// Ios Card
               ServiceIosCard(
                 onHover: (value) {
                   setState(() {
                     isIosHover = value;
                   });
                 },
+                constraints: constrains,
                 isHover: isIosHover,
               ),
-            ],
-          ),
-          const SizedBox(
-            height: 24,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ///  Java Card for tablet
 
+              const SizedBox(height: 10),
+
+              /// Java Card
               ServiceJavaCard(
-                  onHover: (value) {
-                    setState(() {
-                      isJavaHover = value;
-                    });
-                  },
-                  isHover: isJavaHover),
-
+                onHover: (value) {
+                  setState(() {
+                    isJavaHover = value;
+                  });
+                },
+                constraints: constrains,
+                isHover: isJavaHover,
+              ),
               const SizedBox(
-                width: 18,
+                height: 10,
               ),
 
-              /// Ui/Ux Designing Card
+              /// Ux/Ui Designing
               ServiceUiUxCard(
-                  onHover: (value) {
-                    setState(() {
-                      isDesignHover = value;
-                    });
-                  },
-                  isHover: isDesignHover),
+                onHover: (value) {
+                  setState(() {
+                    isDesignHover = value;
+                  });
+                },
+                constraints: constrains,
+                isHover: isDesignHover,
+              ),
             ],
-          ),
-        ],
+          );
+        },
+      ),
+      tablet: LayoutBuilder(
+        builder: (context,constrains){
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const MyServiceText(),
+              const SizedBox(
+                height: 60,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  /// Android Card
+                  ServiceAndroidCard(
+                      onHover: (value) {
+                        setState(() {
+                          isAndroidHover = value;
+                        });
+                      },
+                      constraints: constrains,
+                      isHover: isAndroidHover),
+                  const SizedBox(
+                    width: 18,
+                  ),
+
+                  /// iOS Card
+                  ServiceIosCard(
+                    onHover: (value) {
+                      setState(() {
+                        isIosHover = value;
+                      });
+                    },
+                    constraints: constrains,
+                    isHover: isIosHover,
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ///  Java Card for tablet
+
+                  ServiceJavaCard(
+                      onHover: (value) {
+                        setState(() {
+                          isJavaHover = value;
+                        });
+                      },
+                      constraints: constrains,
+                      isHover: isJavaHover),
+
+                  const SizedBox(
+                    width: 18,
+                  ),
+
+                  /// Ui/Ux Designing Card
+                  ServiceUiUxCard(
+                      onHover: (value) {
+                        setState(() {
+                          isDesignHover = value;
+                        });
+                      },
+                      constraints: constrains,
+                      isHover: isDesignHover),
+                ],
+              ),
+            ],
+          );
+        },
       ),
       desktop: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -169,6 +185,7 @@ class _MyServiceState extends State<MyService> {
                             isAndroidHover = value;
                           });
                         },
+                        constraints: constraints,
                         isHover: isAndroidHover,
                       ),
                       const SizedBox(
@@ -181,6 +198,7 @@ class _MyServiceState extends State<MyService> {
                             isIosHover = value;
                           });
                         },
+                        constraints: constraints,
                         isHover: isIosHover,
                       ),
                     ],
@@ -202,6 +220,7 @@ class _MyServiceState extends State<MyService> {
                             isJavaHover = value;
                           });
                         },
+                        constraints: constraints,
                         isHover: isJavaHover,
 
                       ),
@@ -215,6 +234,7 @@ class _MyServiceState extends State<MyService> {
                               isDesignHover = value;
                             });
                           },
+                          constraints: constraints,
                           isHover: isDesignHover
                       ),
                     ],
@@ -233,6 +253,7 @@ class _MyServiceState extends State<MyService> {
                         isAndroidHover = value;
                       });
                     },
+                    constraints: constraints,
                     isHover: isAndroidHover,
                   ),
                   const SizedBox(
@@ -246,6 +267,7 @@ class _MyServiceState extends State<MyService> {
                         isIosHover = value;
                       });
                     },
+                    constraints: constraints,
                     isHover: isIosHover,
                   ),
                   const SizedBox(
@@ -259,6 +281,7 @@ class _MyServiceState extends State<MyService> {
                         isJavaHover = value;
                       });
                     },
+                    constraints: constraints,
                     isHover: isJavaHover,
 
                   ),
@@ -272,6 +295,7 @@ class _MyServiceState extends State<MyService> {
                           isDesignHover = value;
                         });
                       },
+                      constraints: constraints,
                       isHover: isDesignHover
                   ),
                 ],

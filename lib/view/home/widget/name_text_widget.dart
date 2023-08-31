@@ -13,7 +13,7 @@ class NameTextWidget extends StatelessWidget {
       duration: const Duration(milliseconds: 1400),
       child: Text(
         Constants.nameText,
-        style: AppTextStyle.archivoNarrow(fontSize:constraints.maxWidth<=600?35:constraints.maxWidth<=700?50:60),
+        style: AppTextStyle.archivoNarrow(fontSize:constraints.maxWidth<=600?35:constraints.maxWidth<=800?55:80),
       ),
     );
   }
