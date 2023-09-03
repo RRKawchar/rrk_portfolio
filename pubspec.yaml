@@ -71,6 +71,7 @@ flutter:
     - assets/image/
     - assets/projects/
     - assets/cvpdf/cv.pdf
+    - assets/skills/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

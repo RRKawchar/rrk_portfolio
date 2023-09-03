@@ -1,25 +1,14 @@
-import 'package:animate_do/animate_do.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:my_portfolio/core/components/app_button.dart';
-import 'package:my_portfolio/core/services/app_service.dart';
 import 'package:my_portfolio/core/utils/app_assets.dart';
 import 'package:my_portfolio/core/utils/app_color.dart';
 import 'package:my_portfolio/core/utils/app_text_style.dart';
-import 'package:my_portfolio/core/utils/app_url.dart';
-import 'package:my_portfolio/core/utils/constants.dart';
 import 'package:my_portfolio/view/about/about_me.dart';
 import 'package:my_portfolio/view/contact/contact_us.dart';
 import 'package:my_portfolio/view/footer_widget.dart';
 import 'package:my_portfolio/view/home/home_screen.dart';
-import 'package:my_portfolio/view/home/widget/description_text_widget.dart';
-import 'package:my_portfolio/view/home/widget/home_personal_info.dart';
-import 'package:my_portfolio/view/home/widget/name_text_widget.dart';
-import 'package:my_portfolio/view/home/widget/social_button_widget.dart';
-import 'package:my_portfolio/view/home/widget/title_text_widget.dart';
 import 'package:my_portfolio/view/my_projects/my_project.dart';
 import 'package:my_portfolio/view/services/my_service.dart';
+import 'package:my_portfolio/view/skills/skills_screen.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class MainDashboard extends StatefulWidget {
@@ -36,9 +25,11 @@ class _MainDashboardState extends State<MainDashboard> {
   final List<String> menuItems = [
     "Home",
     "About",
+    "Skills",
     "Services",
     "Projects",
-    "Contact"
+    "Contact",
+
   ];
 
   final List<String> socialButtons = [
@@ -52,6 +43,7 @@ class _MainDashboardState extends State<MainDashboard> {
   final List<Widget> screenList = const [
     HomeScreen(),
     AboutMe(),
+    SkillsScreen(),
     MyService(),
     MyProjects(),
     ContactUs(),

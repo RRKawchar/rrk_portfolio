@@ -7,6 +7,7 @@ import 'package:my_portfolio/provider/project_provider/mf_provider.dart';
 import 'package:my_portfolio/provider/project_provider/news_tube_provider.dart';
 import 'package:my_portfolio/provider/project_provider/rajnity_provider.dart';
 import 'package:my_portfolio/provider/project_provider/wallpaper_provider.dart';
+import 'package:my_portfolio/provider/skills_provider.dart';
 import 'package:my_portfolio/view/main_dashboard.dart';
 import 'package:provider/provider.dart';
 
@@ -46,6 +47,9 @@ class MyApp extends StatelessWidget {
           }),
           ChangeNotifierProvider(create: (context){
             return AboutProvider();
+          }),
+          ChangeNotifierProvider(create: (context){
+            return SkillsProvider();
           }),
 
         ],

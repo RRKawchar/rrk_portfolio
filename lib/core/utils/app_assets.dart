@@ -9,7 +9,6 @@ class AppAssets{
   static String profile2="assets/image/profile2.jpg";
   static String androidIcon="assets/image/android.png";
   static String iosIcon="assets/image/ios.png";
-  static String javaIcon="assets/image/java.png";
   static String designIcon="assets/image/design.png";
   static String toolsIcon="assets/image/tools.png";
   static String shareIcon="assets/image/share.png";
@@ -29,6 +28,23 @@ class AppAssets{
 
 static String myCvPath="assets/cvpdf/cv.pdf";
 static String cvFileName="cv.pdf";
+
+
+
+/// Skills Icon
+static String cProgrammeIcon="assets/skills/cp.jpg";
+static String javaIcon="assets/image/java.png";
+static String dartIcon="assets/skills/dart.png";
+static String flutterIcon="assets/skills/flutter.png";
+static String getxIcon="assets/skills/getx.webp";
+static String providerIcon="assets/skills/provider.png";
+static String apiIconIcon="assets/skills/api.jpg";
+static String firebaseIcon="assets/skills/firebase.png";
+static String figmaIcon="assets/skills/figma.png";
+static String gitIcon="assets/skills/git.png";
+static String ms_officeIcon="assets/skills/ms.png";
+static String mysqlIcon="assets/skills/mysql.png";
+
 
 
 }
