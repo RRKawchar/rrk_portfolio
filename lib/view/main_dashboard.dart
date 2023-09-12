@@ -22,6 +22,7 @@ class _MainDashboardState extends State<MainDashboard> {
   final ItemScrollController _itemScrollController = ItemScrollController();
   final onMenuHover = Matrix4.identity()..scale(1.0);
 
+
   final List<String> menuItems = [
     "Home",
     "About",
@@ -155,31 +156,6 @@ class _MainDashboardState extends State<MainDashboard> {
                 return Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    //const Text("RRK"),
-
-                    //const Spacer(),
-                    // PopupMenuButton(
-                    //   icon: Icon(
-                    //     Icons.open_in_new_rounded,
-                    //     color: AppColors.white,
-                    //     size: 32,
-                    //   ),
-                    //   color: AppColors.cardColor,
-                    //   position: PopupMenuPosition.under,
-                    //   itemBuilder: (BuildContext context) => menuItems
-                    //       .asMap()
-                    //       .entries
-                    //       .map(
-                    //         (e) => PopupMenuItem(
-                    //           textStyle: AppTextStyle.headerTextStyle(),
-                    //           onTap: () {
-                    //             scrollTo(index: e.key);
-                    //           },
-                    //           child: Text(e.value),
-                    //         ),
-                    //       )
-                    //       .toList(),
-                    // ),
                     Container(
                       decoration: const BoxDecoration(
                         border: Border(
@@ -187,7 +163,7 @@ class _MainDashboardState extends State<MainDashboard> {
                         ),
                       ),
                       height: size.height,
-                      width: size.width / 16,
+                      width:constraints.maxWidth<1000?100: 120,
                       child: Padding(
                         padding: const EdgeInsets.only(left: 20, top: 40),
                         child: ListView.separated(
@@ -217,6 +193,7 @@ class _MainDashboardState extends State<MainDashboard> {
                               child: buildNavBarAnimatedContainer(
                                 index,
                                 menuIndex == index ? true : false,
+                                constraints,
                               ),
                             );
                           },
@@ -282,7 +259,7 @@ class _MainDashboardState extends State<MainDashboard> {
     );
   }
 
-  Widget buildNavBarAnimatedContainer(int index, bool hover) {
+  Widget buildNavBarAnimatedContainer(int index, bool hover,BoxConstraints constraints) {
     final size = MediaQuery.of(context).size;
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
@@ -294,7 +271,7 @@ class _MainDashboardState extends State<MainDashboard> {
         child: Text(
           hover ? "--${menuItems[index]}" : menuItems[index],
           style: AppTextStyle.headerTextStyle(
-            fontSize: hover ? 20 : 15,
+            fontSize:constraints.maxWidth < 1000 ?15:20,
             color: hover ? AppColors.themeColor : AppColors.white,
           ),
         ),

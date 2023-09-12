@@ -16,12 +16,13 @@ class SkillsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      onHover: onHover,
-      child: Container(
-        height: 100,
-        width: 150,
+    return LayoutBuilder(builder: (context,constraints){
+      return InkWell(
+        onTap: () {},
+        onHover: onHover,
+        child: Container(
+          height:constraints.maxWidth>900?100: 80,
+          width:constraints.maxWidth>900?150: 80,
 
           decoration: BoxDecoration(
               gradient:isHover?LinearGradient(
@@ -40,25 +41,26 @@ class SkillsWidget extends StatelessWidget {
                 ],
               )
           ),
-        //color: isHover?Colors.black26:Colors.transparent,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              image,
-              width: isHover?50:40,
-            ),
-            const SizedBox(height: 10),
-            Text(
-              text,
-              style: AppTextStyle.normalStyle(
-                color: Colors.white,
-                fontSize: isHover?16:10,
+          //color: isHover?Colors.black26:Colors.transparent,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                image,
+                width: isHover?50:40,
               ),
-            )
-          ],
+              const SizedBox(height: 10),
+              Text(
+                text,
+                style: AppTextStyle.normalStyle(
+                  color: Colors.white,
+                  fontSize: isHover?16:10,
+                ),
+              )
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
